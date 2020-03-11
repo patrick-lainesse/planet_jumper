@@ -8,25 +8,48 @@
     Arrière-plan: stocksnap.io - https://pixabay.com/illustrations/board-chalk-strokes-tic-tac-toe-2097446/
     Police 8-bit: Joiro Hatgaya - https://www.dafont.com/8bit-wonder.font
     Pixelisation des images: Gimp et imgonline: https://www.imgonline.com.ua/eng/8bit-picture.php
+
+    Idées:
+    - Écran paramètres pour changer les unités de mensure
+    - Phase décollage d'une planète coûte beaucoup de ressources, et seules certaines planètes "boss" offrent un bonus valide
+    - Quand on sélectionne le vaisseau, la boîte va au bas de l'écran et s'agrandit pour faire
+    apparaître le card view, la photo passe de noir et blanc à couleurs
+    - Travailler sur card_vaisseau pour les custom view
  */
 
 package com.example.planet_jumper
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class Accueil : AppCompatActivity() {
+
+    lateinit var debuterTv: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.accueil_layout)
 
+        debuterTv = findViewById<TextView>(R.id.lancer_partie)
+
+
         clignoter()
-        // setListener
+        setListener()
+    }
+
+    private fun setListener() {
+
+        val intent = Intent(this@Accueil, ChoixVaisseau::class.java)
+
+        debuterTv.setOnClickListener {startActivity(intent)
+            //Toast.makeText(applicationContext, "cliqué", Toast.LENGTH_SHORT).show()
+        }
     }
 
     // voir section "sources" au haut de la page
@@ -47,7 +70,6 @@ class Accueil : AppCompatActivity() {
     }
 
     private fun clignoter() {
-        val debuterTv = findViewById<TextView>(R.id.lancer_partie)
         debuterTv.blink()
     }
 }
