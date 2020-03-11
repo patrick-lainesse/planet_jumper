@@ -1,3 +1,8 @@
+/*
+Voir Accueil.kt pour commentaires sur le projet
+MainActivity, espace réservé pour une éventuelle connexion à Google Play et autres potentielles
+manoeuvre à effectuer avant le lancement du jeu, inutilisé pour l'instant.
+ */
 package com.example.planet_jumper
 
 import android.content.Intent
