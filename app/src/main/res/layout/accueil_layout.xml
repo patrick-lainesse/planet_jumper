@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="140dp"/>
+        android:layout_marginTop="100dp"/>
 
     <TextView
         android:id="@+id/lancer_partie"
