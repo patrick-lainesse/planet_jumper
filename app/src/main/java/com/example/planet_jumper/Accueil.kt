@@ -25,7 +25,6 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class Accueil : AppCompatActivity() {
@@ -52,7 +51,7 @@ class Accueil : AppCompatActivity() {
         }
     }
 
-    // voir section "sources" au haut de la page
+    // code tiré du web pour animer le texte, voir section "sources" au haut de la page
     fun View.blink(
         times: Int = Animation.INFINITE,
         duration: Long = 700L,
