@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Planet Jumper</string>
+    <string name="nom_jeu">PLANET JUMPER</string>
+    <string name="lancer_jeu">START GAME</string>
+</resources>
