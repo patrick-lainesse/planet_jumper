@@ -2,7 +2,8 @@
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/carte_vaisseau">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="70dp"

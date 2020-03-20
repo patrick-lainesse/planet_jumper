@@ -7,31 +7,32 @@
     android:background="@drawable/vaisseau_lune_background">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nom_jeu"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/peapodthai"
-        android:textSize="50sp"
         android:gravity="center_horizontal"
+        android:text="@string/nom_jeu"
         android:textColor="#FF0901"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="100dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lancer_partie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
         android:fontFamily="@font/huit_bit"
+        android:gravity="center_horizontal"
         android:text="@string/lancer_jeu"
         android:textColor="#FFF"
         android:textSize="20sp"
-        android:gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="60dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 

@@ -3,11 +3,14 @@ package com.example.planet_jumper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 
 class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
 
@@ -46,8 +49,7 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-        val layout = LinearLayout(v?.context)
-        val layoutInflater = LayoutInflater.from(this)
+        val conteneur = findViewById<LinearLayoutCompat>(R.id.carte_vaisseau)
 
         if (v != null) {
             when(v.id) {
@@ -61,12 +63,7 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
                 objet.visibility = View.GONE
             }
 
-            //layout.addView(cardView)
-            val card = layoutInflater.inflate(R.layout.card_vaisseau, null)
-            layout.addView(card)
-
-
-
+            conteneur?.visibility = View.VISIBLE
         }
     }
 }
