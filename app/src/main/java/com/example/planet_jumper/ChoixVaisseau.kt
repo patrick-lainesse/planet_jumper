@@ -53,11 +53,10 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         // récupération des emplacements où seront affichés les données propres au vaisseau sélectionné
         // et des éléments à faire apparaître après une sélection
         val confirmer_choix = findViewById<TextView>(R.id.confirmer)
-        val carte = findViewById<LinearLayoutCompat>(R.id.carte_vaisseau)
-        val nom_vaisseau = carte.findViewById<AppCompatTextView>(R.id.card_nom_vaisseau)
+        //val carte = findViewById<LinearLayoutCompat>(R.id.carte_vaisseau)
+        var carte = findViewById<View>(R.id.carte_vaisseau)
+        //val nom_vaisseau = carte.findViewById<AppCompatTextView>(R.id.card_nom_vaisseau)
         var vaisseau_choisi: ModeleVaisseau
-        //var db = DBHelper_Vaisseau(this).writableDatabase
-        var cursor: Cursor? = null
         dBHelper_Vaisseau = DBHelper_Vaisseau(this)
 
         val test: String
@@ -65,12 +64,9 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         if (v != null) {
             when(v.id) {
                 R.id.vaisseau1 -> {
-//                    Toast.makeText(this, "v1", Toast.LENGTH_LONG).show()
-                    //cursor = db.rawQuery("SELECT * FROM vaisseaux as vaisseau WHERE vaisseau._id = ?", vaisseauID)
-
-                    test = "Nina"
-                    vaisseau_choisi = dBHelper_Vaisseau.lireVaisseau(test)
+                    vaisseau_choisi = dBHelper_Vaisseau.lireVaisseau("Nina")
                     Toast.makeText(this, vaisseau_choisi.nom, Toast.LENGTH_LONG).show()
+                    carte = vaisseau_choisi.peupler_card(findViewById(R.id.carte_vaisseau))
 
                 }  // test ????
 
@@ -84,10 +80,12 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
                 objet.visibility = View.GONE
             }
 
-            nom_vaisseau.setText("Hourra!") // test????
+            //nom_vaisseau.setText("Hourra!") // test????
 
             // afficher l'emplacement où injecter les statistiques propres au vaisseau sélectionné
             carte?.visibility = View.VISIBLE
+
+            // afficher le texte pour confirmer le choix et le bouton pour retourner à l'écran choix de vaisseau????
             confirmer_choix?.visibility = View.VISIBLE  // faire blinker ????
         }
     }

@@ -4,6 +4,8 @@ classe, en prenant seulement quelques-uns des raccourcis offerts par le langage 
 L'adapter n'était pas nécessaire ici car on n'affiche les données que d'un vaisseau à la fois
 J'ai choisi d'inclure la méthode pour effectuer la SQL query à l'intérieur de la classe Helper car cela me semblait plus simple
 L'adapter sera utilisé dans la prochaine utilisation de SQL (pour afficher les cartes associées à un vaisseau en particulier, dans l'activité CartePlanetes
+
+Source utilisée: https://www.tutorialkart.com/kotlin-android/android-sqlite-example-application/
  */
 
 package com.example.planet_jumper

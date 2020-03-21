@@ -27,25 +27,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="Vitesse max: 300K km/h" />
+            android:text="Vitesse max: 300K km/h"
+            android:id="@+id/card_vitesse"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="Capacite: 8" />
+            android:text="Capacite: 8"
+            android:id="@+id/card_capacite"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="Consommation: 1.1 L/km" />
+            android:text="Consommation: 1.1 L/km"
+            android:id="@+id/card_consommation"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="Poids: 1200 kg" />
+            android:text="Poids: 1200 kg"
+            android:id="@+id/card_poids"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
