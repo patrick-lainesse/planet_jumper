@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="2dp"
             android:textSize="12sp"
-            android:text="Santa Maria"/>
+            android:text="Santa Maria"
+            android:id="@+id/card_nom_vaisseau"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"

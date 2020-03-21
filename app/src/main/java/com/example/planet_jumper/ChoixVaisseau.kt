@@ -1,13 +1,12 @@
 package com.example.planet_jumper
 
+import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -20,6 +19,8 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
     lateinit var vaisseau3: ImageView
     lateinit var vaisseau4: ImageView
     var table_vaisseau: MutableList<ImageView> = ArrayList()
+    lateinit var dBHelper_Vaisseau: DBHelper_Vaisseau   // peut-être enelever ici et mettre plus bas???
+    //lateinit var vaisseauID = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,21 +50,45 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-        val conteneur = findViewById<LinearLayoutCompat>(R.id.carte_vaisseau)
+        // récupération des emplacements où seront affichés les données propres au vaisseau sélectionné
+        // et des éléments à faire apparaître après une sélection
+        val confirmer_choix = findViewById<TextView>(R.id.confirmer)
+        val carte = findViewById<LinearLayoutCompat>(R.id.carte_vaisseau)
+        val nom_vaisseau = carte.findViewById<AppCompatTextView>(R.id.card_nom_vaisseau)
+        var vaisseau_choisi: ModeleVaisseau
+        //var db = DBHelper_Vaisseau(this).writableDatabase
+        var cursor: Cursor? = null
+        dBHelper_Vaisseau = DBHelper_Vaisseau(this)
+
+        val test: String
 
         if (v != null) {
             when(v.id) {
-                R.id.vaisseau1 -> Toast.makeText(this, "v1", Toast.LENGTH_LONG).show()
+                R.id.vaisseau1 -> {
+//                    Toast.makeText(this, "v1", Toast.LENGTH_LONG).show()
+                    //cursor = db.rawQuery("SELECT * FROM vaisseaux as vaisseau WHERE vaisseau._id = ?", vaisseauID)
+
+                    test = "Nina"
+                    vaisseau_choisi = dBHelper_Vaisseau.lireVaisseau(test)
+                    Toast.makeText(this, vaisseau_choisi.nom, Toast.LENGTH_LONG).show()
+
+                }  // test ????
+
                 R.id.vaisseau2 -> Toast.makeText(this, "v2", Toast.LENGTH_LONG).show()
                 R.id.vaisseau3 -> Toast.makeText(this, "v3", Toast.LENGTH_LONG).show()
                 R.id.vaisseau4 -> Toast.makeText(this, "v4", Toast.LENGTH_LONG).show()
             }
 
+            // cacher les images des vaisseaux lorsqu'un de ceux-ci est sélectionné
             for (objet in table_vaisseau) {
                 objet.visibility = View.GONE
             }
 
-            conteneur?.visibility = View.VISIBLE
+            nom_vaisseau.setText("Hourra!") // test????
+
+            // afficher l'emplacement où injecter les statistiques propres au vaisseau sélectionné
+            carte?.visibility = View.VISIBLE
+            confirmer_choix?.visibility = View.VISIBLE  // faire blinker ????
         }
     }
 }
