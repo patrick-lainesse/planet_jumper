@@ -91,4 +91,8 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
             confirmer_choix?.visibility = View.VISIBLE  // faire blinker ????
         }
     }
+
+    fun toastExt() {
+        Toast.makeText(this, "Externe", Toast.LENGTH_LONG).show()
+    }
 }
