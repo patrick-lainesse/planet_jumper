@@ -59,6 +59,19 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         var vaisseau_choisi: ModeleVaisseau
         dBHelper_Vaisseau = DBHelper_Vaisseau(this)
 
+
+        val nomTV: AppCompatTextView
+        val vitesseTV: AppCompatTextView
+        val capaciteTV: AppCompatTextView
+        val consommationTV: AppCompatTextView
+        val poidsTV: AppCompatTextView
+
+        nomTV = carte.findViewById<AppCompatTextView>(R.id.card_nom_vaisseau)
+        vitesseTV = carte.findViewById<AppCompatTextView>(R.id.card_vitesse)
+        capaciteTV = carte.findViewById<AppCompatTextView>(R.id.card_capacite)
+        consommationTV = carte.findViewById<AppCompatTextView>(R.id.card_consommation)
+        poidsTV = carte.findViewById<AppCompatTextView>(R.id.card_poids)
+
         val test: String
 
         if (v != null) {
@@ -66,8 +79,18 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
                 R.id.vaisseau1 -> {
                     vaisseau_choisi = dBHelper_Vaisseau.lireVaisseau("Nina")
                     Toast.makeText(this, vaisseau_choisi.nom, Toast.LENGTH_LONG).show()
-                    carte = vaisseau_choisi.peupler_card(findViewById(R.id.carte_vaisseau))
+                    //carte = vaisseau_choisi.peupler_card(findViewById(R.id.carte_vaisseau))
 
+                    nomTV.setText(vaisseau_choisi.nom)
+                    vitesseTV.setText(vaisseau_choisi.vitesse)
+                    capaciteTV.setText(vaisseau_choisi.capacite)
+                    consommationTV.setText(vaisseau_choisi.consommation)
+                    poidsTV.setText(vaisseau_choisi.poids)
+
+                    /*capaciteTV.text = vaisseau_choisi.capacite
+                    consommationTV.text = vaisseau_choisi.consommation
+                    poidsTV.text = vaisseau_choisi.poids
+*/
                 }  // test ????
 
                 R.id.vaisseau2 -> Toast.makeText(this, "v2", Toast.LENGTH_LONG).show()
