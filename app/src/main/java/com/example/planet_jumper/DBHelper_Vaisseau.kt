@@ -31,7 +31,7 @@ class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_
 
         val values = ContentValues().apply {
             // regarder exemple pour AUTOINCREMENT?????
-            //put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "1")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "1")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM, "Nina")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE, "400000")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE, "6")
@@ -41,7 +41,7 @@ class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_
         db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
 
         values.apply {
-            //put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "2")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "2")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM, "Pinta")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE, "300000")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE, "8")
@@ -51,7 +51,7 @@ class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_
         db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
 
         values.apply {
-            //put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "3")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "3")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM, "Santa Maria")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE, "250000")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE, "12")
@@ -61,7 +61,7 @@ class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_
         db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
 
         values.apply {
-            //put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "4")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "4")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM, "Victoria")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE, "275000")
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE, "11")
@@ -94,7 +94,7 @@ class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_
             db.execSQL(SQL_CREATE_ENTRIES)
         }
 
-        var id: String
+        //var id: String
         var nom: String
         var vitesse: String
         var capacite: String
@@ -110,7 +110,7 @@ class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_
                 consommation = cursor.getString(cursor.getColumnIndex("consommation"))
                 poids = cursor.getString(cursor.getColumnIndex("poids"))*/
 
-                id = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID))
+                //id = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID))
                 nom = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM))
                 vitesse = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE))
                 capacite = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE))

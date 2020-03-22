@@ -39,6 +39,8 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         table_vaisseau.add(vaisseau3)
         table_vaisseau.add(vaisseau4)
 
+        // voir si on peut faire un onClick pour la vue en entier, et mettre les case des titres.
+        // si oui, on peut probablement enlever le arraylist et simplifier le code ????
         for (objet in table_vaisseau) {
             objet.setOnClickListener(this)
         }
@@ -49,6 +51,8 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         /* récupération des emplacements où seront affichés les données propres au vaisseau sélectionné
         et des éléments à faire apparaître après une sélection */
         val confirmer_choix = findViewById<TextView>(R.id.confirmer)
+        // ??? pourquoi en rouge??? retourTV
+        val retour = findViewById<TextView>(R.id.retourTV)
         val carte = findViewById<View>(R.id.carte_vaisseau)
         var vaisseau_choisi = ModeleVaisseau("", "", "", "", "")
         dBHelper_Vaisseau = DBHelper_Vaisseau(this)
@@ -92,8 +96,6 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
             vitesseTV.setText(txt)
 
             txtOriginal = capaciteTV.text.toString()
-            //pos = txtOriginal.indexOf(':')
-            //txt = txtOriginal.substring(0, pos+2) + vaisseau_choisi.capacite + txtOriginal.substring(pos+1, txtOriginal.length)
             capaciteTV.setText(txtOriginal + vaisseau_choisi.capacite)
 
             txtOriginal = consommationTV.text.toString()
@@ -106,21 +108,21 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
             txt = txtOriginal.substring(0, pos+2) + vaisseau_choisi.poids + txtOriginal.substring(pos+1, txtOriginal.length)
             poidsTV.setText(txt)
 
-            //vitesseTV.setText(vaisseau_choisi.vitesse)
-            //capaciteTV.setText(vaisseau_choisi.capacite)
-            //consommationTV.setText(vaisseau_choisi.consommation)
-            //poidsTV.setText(vaisseau_choisi.poids)
-
             // cacher les images des vaisseaux lorsqu'un de ceux-ci est sélectionné
             for (objet in table_vaisseau) {
                 objet.visibility = View.GONE
             }
 
+            val layoutACacher = findViewById<ConstraintLayout>(R.id.layout_choix)
+            layoutACacher.visibility = View.GONE
+
             // afficher l'emplacement où injecter les statistiques propres au vaisseau sélectionné
             carte?.visibility = View.VISIBLE
 
             // afficher le texte pour confirmer le choix et le bouton pour retourner à l'écran choix de vaisseau????
-            confirmer_choix?.visibility = View.VISIBLE  // faire blinker ????
+            confirmer_choix?.visibility = View.VISIBLE
+            confirmer_choix?.blink()
+            retour?.visibility = View.VISIBLE
         }
     }
 }
