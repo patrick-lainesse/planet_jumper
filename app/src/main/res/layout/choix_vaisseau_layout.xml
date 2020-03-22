@@ -6,7 +6,7 @@
     android:background="@drawable/choix_background">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/appCompatTextView"
+        android:id="@+id/choix_vaisseauTV"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginLeft="5dp"
@@ -23,48 +23,94 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vaisseau1"
         android:src="@drawable/vaisseau1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="35dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/choix_vaisseauTV" />
+
+    <TextView
+        android:id="@+id/ninaTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nina"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vaisseau2" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vaisseau2"
         android:src="@drawable/vaisseau1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="35dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelineV"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/choix_vaisseauTV" />
+
+    <TextView
+        android:id="@+id/pintaTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pinta"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV"
+        app:layout_constraintTop_toBottomOf="@+id/vaisseau2" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vaisseau3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="35dp"
         android:src="@drawable/vaisseau1"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBas"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV"
-        app:layout_constraintHorizontal_bias="0.814"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH"
-        app:layout_constraintVertical_bias="0.768" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH" />
+
+    <TextView
+        android:id="@+id/santaTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Santa Maria"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBas"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vaisseau3" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vaisseau4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="35dp"
         android:src="@drawable/vaisseau1"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelineV"
         app:layout_constraintTop_toTopOf="@+id/guidelineH" />
+
+    <TextView
+        android:id="@+id/victoriaTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Victoria"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV"
+        app:layout_constraintTop_toBottomOf="@+id/vaisseau4" />
 
     <include
         layout="@layout/card_vaisseau"

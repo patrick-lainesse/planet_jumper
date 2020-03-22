@@ -49,7 +49,7 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         /* récupération des emplacements où seront affichés les données propres au vaisseau sélectionné
         et des éléments à faire apparaître après une sélection */
         val confirmer_choix = findViewById<TextView>(R.id.confirmer)
-        var carte = findViewById<View>(R.id.carte_vaisseau)
+        val carte = findViewById<View>(R.id.carte_vaisseau)
         var vaisseau_choisi = ModeleVaisseau("", "", "", "", "")
         dBHelper_Vaisseau = DBHelper_Vaisseau(this)
 
@@ -85,10 +85,31 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
             }
 
             nomTV.setText(vaisseau_choisi.nom)
-            vitesseTV.setText(vaisseau_choisi.vitesse)
-            capaciteTV.setText(vaisseau_choisi.capacite)
-            consommationTV.setText(vaisseau_choisi.consommation)
-            poidsTV.setText(vaisseau_choisi.poids)
+
+            var txtOriginal = vitesseTV.text.toString()
+            var pos = txtOriginal.indexOf(':')
+            var txt = txtOriginal.substring(0, pos+2) + vaisseau_choisi.vitesse + txtOriginal.substring(pos+1, txtOriginal.length)
+            vitesseTV.setText(txt)
+
+            txtOriginal = capaciteTV.text.toString()
+            //pos = txtOriginal.indexOf(':')
+            //txt = txtOriginal.substring(0, pos+2) + vaisseau_choisi.capacite + txtOriginal.substring(pos+1, txtOriginal.length)
+            capaciteTV.setText(txtOriginal + vaisseau_choisi.capacite)
+
+            txtOriginal = consommationTV.text.toString()
+            pos = txtOriginal.indexOf(':')
+            txt = txtOriginal.substring(0, pos+2) + vaisseau_choisi.consommation + txtOriginal.substring(pos+1, txtOriginal.length)
+            consommationTV.setText(txt)
+
+            txtOriginal = poidsTV.text.toString()
+            pos = txtOriginal.indexOf(':')
+            txt = txtOriginal.substring(0, pos+2) + vaisseau_choisi.poids + txtOriginal.substring(pos+1, txtOriginal.length)
+            poidsTV.setText(txt)
+
+            //vitesseTV.setText(vaisseau_choisi.vitesse)
+            //capaciteTV.setText(vaisseau_choisi.capacite)
+            //consommationTV.setText(vaisseau_choisi.consommation)
+            //poidsTV.setText(vaisseau_choisi.poids)
 
             // cacher les images des vaisseaux lorsqu'un de ceux-ci est sélectionné
             for (objet in table_vaisseau) {
