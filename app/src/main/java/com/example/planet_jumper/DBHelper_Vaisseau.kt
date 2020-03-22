@@ -1,9 +1,8 @@
 /*
-Classe nécessaire pour utiliser la base de données. J'ai tenté de rester le plus près possible de l'exemple vu en
-classe, en prenant seulement quelques-uns des raccourcis offerts par le langage Kotlin
-L'adapter n'était pas nécessaire ici car on n'affiche les données que d'un vaisseau à la fois
-J'ai choisi d'inclure la méthode pour effectuer la SQL query à l'intérieur de la classe Helper car cela me semblait plus simple
-L'adapter sera utilisé dans la prochaine utilisation de SQL (pour afficher les cartes associées à un vaisseau en particulier, dans l'activité CartePlanetes
+Classe nécessaire pour utiliser la base de données.
+Un base adapter n'était pas nécessaire ici car on n'affiche les données que d'un vaisseau à la fois
+J'ai choisi d'inclure la méthode pour effectuer la SQL query à l'intérieur de la classe Helper car cela me semblait plus logique
+L'adapter sera utilisé dans la prochaine utilisation de SQL (pour afficher les cartes associées à un vaisseau en particulier, dans l'activité CartePlanetes)
 
 Source utilisée: https://www.tutorialkart.com/kotlin-android/android-sqlite-example-application/
  */
@@ -26,96 +25,74 @@ class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_
 
     override fun onCreate(db: SQLiteDatabase?) {
 
-/*        val sql = "CREATE TABLE IF NOT EXISTS vaisseaux (" +
-                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "nom TEXT, " + "vitesse INTEGER" + "capacite TINYINT" + "consommation REAL" + "poids INTEGER)"*/
-
-        /*val sql = "CREATE TABLE IF NOT EXISTS vaisseaux (" +
-                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "nom TEXT, " + "vitesse TEXT" + "capacite TEXT" + "consommation TEXT" + "poids TEXT)"
-        db?.execSQL(sql)*/
-
+        /* voir companion object à la fin de cette classe et le fichier DBContenuVaisseau.kt pour les détails
+        de la création de la db */
         db?.execSQL(SQL_CREATE_ENTRIES)
 
-        val values = ContentValues()
-        values.put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "1")
-        values.put(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM, "Nina")
-        values.put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE, "300000")
-        values.put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE, "8")
-        values.put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CONSOMMATION, "1.1")
-        values.put(DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS, "1200")
-
-        val newRowId = db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
-
-        /*val values = ContentValues().apply {
-            put("nom", "Santa Maria")
-            put("vitesse", "300000")
-            put("capacite", 8)
-            put("consommation", 1.1)
-            put("poids", 1200)
+        val values = ContentValues().apply {
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "1")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM, "Nina")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE, "400000")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE, "6")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CONSOMMATION, "2.1")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS, "900")
         }
-        db?.insert("vaisseaux", "null", values)
+        db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
 
         values.apply {
-            put("nom", "Nina")
-            put("vitesse", "250000")
-            put("capacite", 12)
-            put("consommation", 1.8)
-            put("poids", 1500)
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "2")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM, "Pinta")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE, "300000")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE, "8")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CONSOMMATION, "1.1")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS, "1200")
         }
-        db?.insert("vaisseaux", "null", values)
+        db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
 
         values.apply {
-            put("nom", "Pinta")
-            put("vitesse", "400000")
-            put("capacite", 6)
-            put("consommation", 2.1)
-            put("poids", 900)
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "3")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM, "Santa Maria")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE, "250000")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE, "12")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CONSOMMATION, "1.8")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS, "1500")
         }
-        db?.insert("vaisseaux", "null", values)*/
+        db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
+
+        values.apply {
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "4")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM, "Victoria")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE, "275000")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE, "11")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_CONSOMMATION, "1.7")
+            put(DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS, "1400")
+        }
+        db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS vaisseaux")
+        //db?.execSQL("DROP TABLE IF EXISTS vaisseaux")     ????
+        db?.execSQL(SQL_DELETE_ENTRIES)
         onCreate(db)
     }
 
     // fonction qui retourne un arraylist contenant les statistiques d'un vaisseau dans la db
     fun lireVaisseau(nomVaisseau: String): ModeleVaisseau {
         val tableVaisseaux = ArrayList<ModeleVaisseau>()
-        var leVaisseau = ModeleVaisseau("OUAH", "", "", "", "") //??? OUAH
+        var leVaisseau = ModeleVaisseau("", "", "", "", "")
         val db = writableDatabase
         var cursor: Cursor? = null
 
-        //var adapter: SimpleCursorAdapter? = null
+/*        cursor = db!!.rawQuery("SELECT * FROM " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE
+                + " WHERE " + DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM + "= '" + nomVaisseau + "'", null)*/
 
-        //cursor = db!!.rawQuery("SELECT * FROM vaisseaux WHERE nom='" + nomVaisseau + "'", null)
-        //cursor = db!!.rawQuery("SELECT * FROM vaisseaux WHERE nom LIKE ?", arrayOf("%" + nomVaisseau + "%"))
-        //cursor = db!!.rawQuery("SELECT * FROM vaisseaux WHERE nom=?", arrayOf("%" + nomVaisseau + "%"))
-        //cursor = db!!.rawQuery("SELECT _id, nom, vitesse FROM vaisseaux WHERE nom=?", arrayOf("%" + nomVaisseau + "%"))
-
-        cursor = db!!.rawQuery("SELECT * FROM " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE
-                + " WHERE " + DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM + "= '" + nomVaisseau + "'", null)
-
-        var nombre = cursor.count
-        //cursor.moveToFirst()
-
-
-        //val cv: ChoixVaisseau? = null
-        //cv!!.toastExt()
-
-        /*try {
-            cursor = db!!.rawQuery("SELECT * FROM vaisseaux as vaisseau WHERE nom = '" + nomVaisseau + "'", null)
+        try {
+            cursor = db!!.rawQuery("SELECT * FROM " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE
+                    + " WHERE " + DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM + "= '" + nomVaisseau + "'", null)
         } catch (e: SQLiteException) {
-            // si la table n'est pas présente, la créer
-            //????
-            //db.execSQL(SQL_CREATE_ENTRIES)
-            //return ArrayList()
-            //Toast.makeText(this, "Exception", Toast.LENGTH_LONG).show()
-            *//*val cv: ChoixVaisseau? = null
-            cv?.toastExt()*//*
+            db.execSQL(SQL_CREATE_ENTRIES)
         }
-*/
+
         var nom: String
         var vitesse: String
         var capacite: String
@@ -154,7 +131,5 @@ class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_
 
         // nécessaire???
         private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE
-
-
     }
 }

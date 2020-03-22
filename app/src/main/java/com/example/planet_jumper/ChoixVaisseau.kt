@@ -20,16 +20,15 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
     lateinit var vaisseau4: ImageView
     var table_vaisseau: MutableList<ImageView> = ArrayList()
     lateinit var dBHelper_Vaisseau: DBHelper_Vaisseau   // peut-être enelever ici et mettre plus bas???
-    //lateinit var vaisseauID = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.choix_vaisseau_layout)
 
-        afficher_stats()
+        afficher_choix()
     }
 
-    private fun afficher_stats() {
+    private fun afficher_choix() {
         vaisseau1 = findViewById<ImageView>(R.id.vaisseau1)
         vaisseau2 = findViewById<ImageView>(R.id.vaisseau2)
         vaisseau3 = findViewById<ImageView>(R.id.vaisseau3)
@@ -43,20 +42,15 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         for (objet in table_vaisseau) {
             objet.setOnClickListener(this)
         }
-
-
-
     }
 
     override fun onClick(v: View?) {
 
-        // récupération des emplacements où seront affichés les données propres au vaisseau sélectionné
-        // et des éléments à faire apparaître après une sélection
+        /* récupération des emplacements où seront affichés les données propres au vaisseau sélectionné
+        et des éléments à faire apparaître après une sélection */
         val confirmer_choix = findViewById<TextView>(R.id.confirmer)
-        //val carte = findViewById<LinearLayoutCompat>(R.id.carte_vaisseau)
         var carte = findViewById<View>(R.id.carte_vaisseau)
-        //val nom_vaisseau = carte.findViewById<AppCompatTextView>(R.id.card_nom_vaisseau)
-        var vaisseau_choisi: ModeleVaisseau
+        var vaisseau_choisi = ModeleVaisseau("", "", "", "", "")
         dBHelper_Vaisseau = DBHelper_Vaisseau(this)
 
 
@@ -78,32 +72,28 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
             when(v.id) {
                 R.id.vaisseau1 -> {
                     vaisseau_choisi = dBHelper_Vaisseau.lireVaisseau("Nina")
-                    Toast.makeText(this, vaisseau_choisi.nom, Toast.LENGTH_LONG).show()
-                    //carte = vaisseau_choisi.peupler_card(findViewById(R.id.carte_vaisseau))
-
-                    nomTV.setText(vaisseau_choisi.nom)
-                    vitesseTV.setText(vaisseau_choisi.vitesse)
-                    capaciteTV.setText(vaisseau_choisi.capacite)
-                    consommationTV.setText(vaisseau_choisi.consommation)
-                    poidsTV.setText(vaisseau_choisi.poids)
-
-                    /*capaciteTV.text = vaisseau_choisi.capacite
-                    consommationTV.text = vaisseau_choisi.consommation
-                    poidsTV.text = vaisseau_choisi.poids
-*/
-                }  // test ????
-
-                R.id.vaisseau2 -> Toast.makeText(this, "v2", Toast.LENGTH_LONG).show()
-                R.id.vaisseau3 -> Toast.makeText(this, "v3", Toast.LENGTH_LONG).show()
-                R.id.vaisseau4 -> Toast.makeText(this, "v4", Toast.LENGTH_LONG).show()
+                }
+                R.id.vaisseau2 -> {
+                    vaisseau_choisi = dBHelper_Vaisseau.lireVaisseau("Pinta")
+                }
+                R.id.vaisseau3 -> {
+                    vaisseau_choisi = dBHelper_Vaisseau.lireVaisseau("Santa Maria")
+                }
+                R.id.vaisseau4 -> {
+                    vaisseau_choisi = dBHelper_Vaisseau.lireVaisseau("Victoria")
+                }
             }
+
+            nomTV.setText(vaisseau_choisi.nom)
+            vitesseTV.setText(vaisseau_choisi.vitesse)
+            capaciteTV.setText(vaisseau_choisi.capacite)
+            consommationTV.setText(vaisseau_choisi.consommation)
+            poidsTV.setText(vaisseau_choisi.poids)
 
             // cacher les images des vaisseaux lorsqu'un de ceux-ci est sélectionné
             for (objet in table_vaisseau) {
                 objet.visibility = View.GONE
             }
-
-            //nom_vaisseau.setText("Hourra!") // test????
 
             // afficher l'emplacement où injecter les statistiques propres au vaisseau sélectionné
             carte?.visibility = View.VISIBLE
@@ -111,9 +101,5 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
             // afficher le texte pour confirmer le choix et le bouton pour retourner à l'écran choix de vaisseau????
             confirmer_choix?.visibility = View.VISIBLE  // faire blinker ????
         }
-    }
-
-    fun toastExt() {
-        Toast.makeText(this, "Externe", Toast.LENGTH_LONG).show()
     }
 }
