@@ -1,5 +1,6 @@
 package com.example.planet_jumper
 
+import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,16 +20,18 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
     lateinit var vaisseau3: ImageView
     lateinit var vaisseau4: ImageView
     var table_vaisseau: MutableList<ImageView> = ArrayList()
-    lateinit var dBHelper_Vaisseau: DBHelper_Vaisseau   // peut-être enelever ici et mettre plus bas???
+    lateinit var dBHelper_Vaisseau: DBHelper_Vaisseau
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.choix_vaisseau_layout)
 
-        afficher_choix()
+        setListener()
     }
 
-    private fun afficher_choix() {
+    private fun setListener() {
+        val retour = findViewById<TextView>(R.id.retourTV)
+
         vaisseau1 = findViewById<ImageView>(R.id.vaisseau1)
         vaisseau2 = findViewById<ImageView>(R.id.vaisseau2)
         vaisseau3 = findViewById<ImageView>(R.id.vaisseau3)
@@ -39,19 +42,19 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         table_vaisseau.add(vaisseau3)
         table_vaisseau.add(vaisseau4)
 
-        // voir si on peut faire un onClick pour la vue en entier, et mettre les case des titres.
-        // si oui, on peut probablement enlever le arraylist et simplifier le code ????
         for (objet in table_vaisseau) {
             objet.setOnClickListener(this)
         }
+        retour.setOnClickListener(this)
+
     }
 
+    // fonction qui réagit aux différents clics possibles dans cette activité
     override fun onClick(v: View?) {
 
         /* récupération des emplacements où seront affichés les données propres au vaisseau sélectionné
         et des éléments à faire apparaître après une sélection */
         val confirmer_choix = findViewById<TextView>(R.id.confirmer)
-        // ??? pourquoi en rouge??? retourTV
         val retour = findViewById<TextView>(R.id.retourTV)
         val carte = findViewById<View>(R.id.carte_vaisseau)
         var vaisseau_choisi = ModeleVaisseau("", "", "", "", "")
@@ -70,8 +73,6 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         consommationTV = carte.findViewById<AppCompatTextView>(R.id.card_consommation)
         poidsTV = carte.findViewById<AppCompatTextView>(R.id.card_poids)
 
-        val test: String
-
         if (v != null) {
             when(v.id) {
                 R.id.vaisseau1 -> {
@@ -86,10 +87,16 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
                 R.id.vaisseau4 -> {
                     vaisseau_choisi = dBHelper_Vaisseau.lireVaisseau("Victoria")
                 }
+                R.id.retourTV -> {
+                    val intent = intent
+                    finish()
+                    startActivity(intent)
+                }
             }
 
             nomTV.setText(vaisseau_choisi.nom)
 
+            // on injecte les données tirées de la db dans les String où afficher les statistiques du vaisseau choisi
             var txtOriginal = vitesseTV.text.toString()
             var pos = txtOriginal.indexOf(':')
             var txt = txtOriginal.substring(0, pos+2) + vaisseau_choisi.vitesse + txtOriginal.substring(pos+1, txtOriginal.length)
@@ -119,10 +126,11 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
             // afficher l'emplacement où injecter les statistiques propres au vaisseau sélectionné
             carte?.visibility = View.VISIBLE
 
-            // afficher le texte pour confirmer le choix et le bouton pour retourner à l'écran choix de vaisseau????
+            // afficher le texte pour confirmer le choix et le bouton pour retourner à l'écran choix de vaisseau
             confirmer_choix?.visibility = View.VISIBLE
             confirmer_choix?.blink()
             retour?.visibility = View.VISIBLE
+
         }
     }
 }
