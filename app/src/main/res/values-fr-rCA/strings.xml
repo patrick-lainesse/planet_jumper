@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lancer_jeu">DEBUTER PARTIE</string>
+    <string name="titre_choix">Choisissez\nun vaisseau</string>
+    <string name="vmax">Vitesse max: km/h</string>
+    <string name="capacite">Capacite:</string>
+    <string name="consommation">Consommation: L/km</string>
+    <string name="poids">Poids: kg</string>
+    <string name="back">Retour</string>
+</resources>

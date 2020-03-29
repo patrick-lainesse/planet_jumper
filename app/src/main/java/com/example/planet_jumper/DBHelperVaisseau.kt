@@ -15,11 +15,8 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.view.Display
-import android.widget.SimpleCursorAdapter
-import android.widget.Toast
 
-class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, null, DATABASE_VERSION) {
+class DBHelperVaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase?) {
 
@@ -105,6 +102,8 @@ class DBHelper_Vaisseau(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_
                 cursor.moveToNext()
             }
         }
+
+        cursor.close()
 
         return tableVaisseaux[0]
     }

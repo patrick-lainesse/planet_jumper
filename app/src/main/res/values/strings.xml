@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">Planet Jumper</string>
-    <string name="nom_jeu">PLANET JUMPER</string>
+    <string name="app_name" translatable="false">Planet Jumper</string>
+    <string name="nom_jeu" translatable="false">PLANET JUMPER</string>
     <string name="lancer_jeu">START GAME</string>
     <string name="titre_choix">Pick a ship</string>
+    <string name="vmax">Max speed: km/h</string>
+    <string name="capacite">Capacity:</string>
+    <string name="consommation">Consumption: L/km</string>
+    <string name="poids">Weight: kg</string>
+    <string name="nina" translatable="false">Nina</string>
+    <string name="pinta" translatable="false">Pinta</string>
+    <string name="santa_maria" translatable="false">Santa Maria</string>
+    <string name="victoria" translatable="false">Victoria</string>
+    <string name="back">Back</string>
 </resources>

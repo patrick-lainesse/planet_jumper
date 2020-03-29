@@ -20,35 +20,34 @@
             android:layout_height="wrap_content"
             android:paddingTop="2dp"
             android:textSize="14sp"
-            android:text="Santa Maria"
             android:id="@+id/card_nom_vaisseau"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="Vitesse max: km/h"
+            android:text="@string/vmax"
             android:id="@+id/card_vitesse"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="Capacite: "
+            android:text="@string/capacite"
             android:id="@+id/card_capacite"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="Consommation: L/km"
+            android:text="@string/consommation"
             android:id="@+id/card_consommation"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="Poids: kg"
+            android:text="@string/poids"
             android:id="@+id/card_poids"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

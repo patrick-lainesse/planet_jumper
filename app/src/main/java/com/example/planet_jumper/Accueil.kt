@@ -8,6 +8,7 @@
     Arrière-plan: stocksnap.io - https://pixabay.com/illustrations/board-chalk-strokes-tic-tac-toe-2097446/
     Police 8-bit: Joiro Hatgaya - https://www.dafont.com/8bit-wonder.font
     Pixelisation des images: Gimp et imgonline: https://www.imgonline.com.ua/eng/8bit-picture.php
+    <a href="https://www.vecteezy.com/free-vector/spaceship-icon">Spaceship Icon Vectors by Vecteezy</a>
 
     Idées:
     - Écran paramètres pour changer les unités de mensure
@@ -21,21 +22,18 @@ package com.example.planet_jumper
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class Accueil : AppCompatActivity() {
 
-    lateinit var debuterTv: TextView
+    private lateinit var debuterTv: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.accueil_layout)
 
-        debuterTv = findViewById<TextView>(R.id.lancer_partie)
+        debuterTv = findViewById(R.id.lancer_partie)
 
 
         clignoter()
