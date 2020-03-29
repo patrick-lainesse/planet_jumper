@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 
@@ -64,6 +65,7 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         dbhelperVaisseau = DBHelperVaisseau(this)
 
 
+        val imageIV = carte.findViewById<AppCompatImageView>(R.id.card_image)
         val nomTV: AppCompatTextView
         val vitesseTV: AppCompatTextView
         val capaciteTV: AppCompatTextView
@@ -80,15 +82,19 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
             when(v.id) {
                 R.id.vaisseau1, R.id.ninaTV -> {
                     vaisseauChoisi = dbhelperVaisseau.lireVaisseau("Nina")
+                    imageIV.setBackgroundResource(R.drawable.nina)
                 }
                 R.id.vaisseau2, R.id.pintaTV -> {
                     vaisseauChoisi = dbhelperVaisseau.lireVaisseau("Pinta")
+                    imageIV.setBackgroundResource(R.drawable.pinta)
                 }
                 R.id.vaisseau3, R.id.santaTV -> {
                     vaisseauChoisi = dbhelperVaisseau.lireVaisseau("Santa Maria")
+                    imageIV.setBackgroundResource(R.drawable.santa_maria)
                 }
                 R.id.vaisseau4, R.id.victoriaTV -> {
                     vaisseauChoisi = dbhelperVaisseau.lireVaisseau("Victoria")
+                    imageIV.setBackgroundResource(R.drawable.victoria)
                 }
                 R.id.retourTV -> {
                     val intent = intent

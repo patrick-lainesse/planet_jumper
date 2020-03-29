@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/choix_background">
+    android:background="@drawable/choix_background2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_choix"
@@ -31,7 +31,7 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vaisseau1"
-        android:src="@drawable/vaisseau1"
+        android:src="@drawable/nina"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="35dp"
@@ -54,7 +54,7 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vaisseau2"
-        android:src="@drawable/vaisseau1"
+        android:src="@drawable/pinta"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="35dp"
@@ -80,7 +80,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="35dp"
-        android:src="@drawable/vaisseau1"
+        android:src="@drawable/santa_maria"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBas"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +103,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="35dp"
-        android:src="@drawable/vaisseau1"
+        android:src="@drawable/victoria"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelineV"
