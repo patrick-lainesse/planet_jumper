@@ -12,4 +12,5 @@
     <string name="santa_maria" translatable="false">Santa Maria</string>
     <string name="victoria" translatable="false">Victoria</string>
     <string name="back">Back</string>
+    <string name="cards">Cards</string>
 </resources>

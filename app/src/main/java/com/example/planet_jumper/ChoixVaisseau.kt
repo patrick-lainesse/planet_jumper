@@ -1,5 +1,6 @@
 package com.example.planet_jumper
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -18,6 +19,8 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
     private var tableVaisseau: MutableList<ImageView> = ArrayList()
     private lateinit var dbhelperVaisseau: DBHelperVaisseau
 
+    private var vaisseauChoisi = ModeleVaisseau("", "", "", "", "")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.choix_vaisseau_layout)
@@ -31,6 +34,7 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         val pintaTV = findViewById<TextView>(R.id.pintaTV)
         val santaTV = findViewById<TextView>(R.id.santaTV)
         val victoTV = findViewById<TextView>(R.id.victoriaTV)
+        val confirmerChoix = findViewById<TextView>(R.id.confirmer)
 
         vaisseau1 = findViewById(R.id.vaisseau1)
         vaisseau2 = findViewById(R.id.vaisseau2)
@@ -50,6 +54,7 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         pintaTV.setOnClickListener(this)
         santaTV.setOnClickListener(this)
         victoTV.setOnClickListener(this)
+        confirmerChoix.setOnClickListener(this)
 
     }
 
@@ -61,7 +66,6 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         val confirmerChoix = findViewById<TextView>(R.id.confirmer)
         val retour = findViewById<TextView>(R.id.retourTV)
         val carte = findViewById<View>(R.id.carte_vaisseau)
-        var vaisseauChoisi = ModeleVaisseau("", "", "", "", "")
         dbhelperVaisseau = DBHelperVaisseau(this)
 
 
@@ -99,6 +103,11 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
                 R.id.retourTV -> {
                     val intent = intent
                     finish()
+                    startActivity(intent)
+                }
+                R.id.confirmer -> {
+                    val intent = Intent(this, Planete::class.java)
+                    intent.putExtra("choix", vaisseauChoisi.nom)
                     startActivity(intent)
                 }
             }

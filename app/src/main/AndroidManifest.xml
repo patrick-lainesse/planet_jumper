@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChoixVaisseau"/>
+        <activity android:name=".Planete"/>
     </application>
 
 </manifest>
