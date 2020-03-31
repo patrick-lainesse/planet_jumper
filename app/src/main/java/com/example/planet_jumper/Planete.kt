@@ -25,6 +25,10 @@ class Planete: AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        Toast.makeText(this, vaisseau, Toast.LENGTH_LONG).show()
+
+        val carte = findViewById<View>(R.id.carte_vaisseau)
+
+        // afficher l'emplacement où injecter les statistiques propres au vaisseau sélectionné
+        carte?.visibility = View.VISIBLE
     }
 }
