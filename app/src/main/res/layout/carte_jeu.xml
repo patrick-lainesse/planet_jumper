@@ -2,8 +2,7 @@
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@color/colorPrimaryDark">
+    android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/carteJeu_image"
@@ -32,9 +31,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="2dp"
-                android:textSize="14dp"
+                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="14sp"
                 android:text="Correct course"
-                android:id="@+id/carteJeu_titre"/>
+                android:id="@+id/carteJeu_titre" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
