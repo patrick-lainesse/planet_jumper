@@ -26,10 +26,10 @@ class Planete: AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-        //val carte = findViewById<View>(R.id.carte_vaisseau)
-        //carte?.visibility = View.VISIBLE
+        val carte = findViewById<View>(R.id.carte_vaisseau)
+        carte?.visibility = View.VISIBLE
 
-        val recCartes = findViewById<View>(R.id.planete_recycler)
+        //val recCartes = findViewById<View>(R.id.planete_recycler)
         //val listeCartes = Array<Cartes>
     }
 }
