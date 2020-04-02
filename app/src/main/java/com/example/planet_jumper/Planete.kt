@@ -5,10 +5,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class Planete: AppCompatActivity(), View.OnClickListener {
 
     private lateinit var vaisseau: String
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +29,20 @@ class Planete: AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-        val carte = findViewById<View>(R.id.carte_vaisseau)
-        carte?.visibility = View.VISIBLE
+        when (v?.id) {
+            R.id.bouton_cartes -> {
+                /*val carte = findViewById<View>(R.id.carte_vaisseau)
+                carte?.visibility = View.VISIBLE*/
+
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_cartes, FragCartes.newInstance(), FragCartes.TAG).commit()
+            }
+        }
+
+
+        /*val recyclerView = findViewById<RecyclerView>(R.id.recycler_cartes)
+        linearLayoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = linearLayoutManager*/
+
 
         //val recCartes = findViewById<View>(R.id.planete_recycler)
         //val listeCartes = Array<Cartes>

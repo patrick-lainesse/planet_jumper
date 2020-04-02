@@ -24,17 +24,18 @@
 
     <fragment
         android:id="@+id/fragment_cartes"
-        class="com.example.planet_jumper.FragCartes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <!--<include
+<!--
+    <include
         layout="@layout/carte_jeu"
         android:id="@+id/carte_vaisseau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp"
-        android:visibility="gone"/>-->
+        android:visibility="gone"/>
+-->
 
 </androidx.appcompat.widget.LinearLayoutCompat>
