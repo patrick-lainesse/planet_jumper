@@ -145,7 +145,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
-        layout="@layout/card_vaisseau"
+        layout="@layout/card_vaisseau_item"
         android:id="@+id/carte_vaisseau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

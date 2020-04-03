@@ -1,16 +1,23 @@
 package com.example.planet_jumper
 
+import android.content.Context
 import android.os.Bundle
+import android.renderscript.ScriptGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import java.lang.ClassCastException
 
 
 class FragCartes : Fragment() {
 
     //private lateinit var linearLayoutManager: LinearLayoutManager
+
+
+    private var listener: OnCarteSelected
 
     companion object {
 
@@ -19,33 +26,25 @@ class FragCartes : Fragment() {
         }
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
 
-
-/*    protected lateinit var rootView: View
-    //lateinit var recyclerView: RecyclerView
-    lateinit var adapter: RecyclerAdapterCartes
-
-    companion object {
-
-        var TAG = FragCartes::class.java.simpleName
-        const val ARG_POSITION: String = "position"
-
-        fun newInstance(): FragCartes {
-            var fragment = FragCartes()
-*//*            val args = Bundle()
-            args.putInt(ARG_POSITION, 1)
-            fragment.arguments = args       ???*//*
-            return fragment
+        if(context is OnCarteSelected) {    //???
+            listener = context
+        } else {
+            throw ClassCastException(context.toString() + " doit implémenter OnCarteSelected.")
         }
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //onCreateComponent()   ???
-    }
+        // obtenir les données propres aux cartes
+        val resources = context.resources
+        /* doit implémenter des arraylist des noms de cartes, mais doit réfléchir à comment peupler ces AList
+        selon les cartes que possède le joueur à un moment donné
 
-    private fun onCreateComponent() {
-        adapter = RecyclerAdapterCartes()
+        noms = resources.getStringArray(R.array.names)
+        descriptions
+        urls
+
+        obtenir les images*/
     }
 
     override fun onCreateView(
@@ -53,41 +52,43 @@ class FragCartes : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(R.layout.frag_cartes, container, false)
-        initView()
-
-        return rootView
-    }
-
-    private fun initView() {
-        setUpAdapter()
-        initializeRecyclerView()
-        setUpDummyData()
-    }
-
-    private fun setUpAdapter() {
-        adapter.setOnItemClickListener(onItemClickListener = object : OnItemClickListener {
-            override fun onItemClick(position: Int, view: View?) {
-                var carte = adapter.getItem(position)
-                startActivity(context?.let {ctx -> carte?.let {
-                    carte -> DetailsActivity.newIntent(ctx, carte)
-                }
-                })
-            }
-        })
-    }
-
-    private fun setUpDummyData() {
-        var list: ArrayList<Cartes> = ArrayList<Cartes>()
-        // ajouter cartes à la liste????
-    }
-
-    private fun initializeRecyclerView() {
-        recyclerView = rootView.findViewById(R.id.recycler_cartes)
+        val view: View = inflater.inflate(R.layout.carte_jeu_item, container, false)
+        val activity = activity as Context
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_cartes)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = adapter
-    }*/
+        recyclerView.adapter = ListeCartesAdapter(activity)
+        return view
+    }
 
+    internal inner class ListeCartesAdapter(context: Context) : RecyclerView.Adapter<ViewHolder>() {
+
+        private val layoutInflater = LayoutInflater.from(context)
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+            val recyclerCartesBinding = RecyclerCartesModelBinding.inflate(layoutInflater, viewGroup, false)
+            return ViewHolder(recyclerCartesBinding.root, recyclerCartesBinding)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+            val carte = Cartes() // ??? remplir les infos des cartes à partir de tableau
+            holder.setData(carte)
+            holder.itemView.setOnClickListener {listener.onCarteSelected(carte)}
+        }
+
+        override fun getItemCount() = names.size // ??? voir names plus haut, à implémenter arraylist
+    }
+
+    internal inner class ViewHolder constructor(itemView: View, private val recyclerCartesModelBinding: RecyclerCartesModelBinding) : RecyclerView.ViewHolder(itemView) {
+
+        fun setData(carte: Cartes) {
+            recyclerCartesModelBinding.carte = carte
+        }
+
+    }
+
+    interface OnCarteSelected {
+        fun onCarteSelected(carte: Cartes)
+    }
 }
-
-//https://medium.com/@info.anikdey003/kotlin-recyclerview-in-a-proper-and-re-usable-way-bb14717daa93

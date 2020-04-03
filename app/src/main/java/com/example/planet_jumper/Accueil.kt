@@ -15,7 +15,7 @@
     - Phase décollage d'une planète coûte beaucoup de ressources, et seules certaines planètes "boss" offrent un bonus valide
     - Quand on sélectionne le vaisseau, la boîte va au bas de l'écran et s'agrandit pour faire
     apparaître le card view, la photo passe de noir et blanc à couleurs
-    - Travailler sur card_vaisseau pour les custom view
+    - Travailler sur card_vaisseau_item pour les custom view
  */
 
 package com.example.planet_jumper
