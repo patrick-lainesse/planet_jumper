@@ -4,17 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 
 class FragCartes : Fragment() {
 
-    protected lateinit var rootView: View
-    lateinit var recyclerView: RecyclerView
-    lateinit var adapter: AdapterRecycCartes
+    //private lateinit var linearLayoutManager: LinearLayoutManager
+
+    companion object {
+
+        fun newInstance(): FragCartes {
+            return FragCartes()
+        }
+    }
+
+
+
+/*    protected lateinit var rootView: View
+    //lateinit var recyclerView: RecyclerView
+    lateinit var adapter: RecyclerAdapterCartes
 
     companion object {
 
@@ -23,9 +32,9 @@ class FragCartes : Fragment() {
 
         fun newInstance(): FragCartes {
             var fragment = FragCartes()
-/*            val args = Bundle()
+*//*            val args = Bundle()
             args.putInt(ARG_POSITION, 1)
-            fragment.arguments = args       ???*/
+            fragment.arguments = args       ???*//*
             return fragment
         }
     }
@@ -36,7 +45,7 @@ class FragCartes : Fragment() {
     }
 
     private fun onCreateComponent() {
-        adapter = AdapterRecycCartes()
+        adapter = RecyclerAdapterCartes()
     }
 
     override fun onCreateView(
@@ -77,7 +86,7 @@ class FragCartes : Fragment() {
         recyclerView = rootView.findViewById(R.id.recycler_cartes)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
-    }
+    }*/
 
 }
 

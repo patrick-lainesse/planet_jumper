@@ -1,3 +1,4 @@
+/*
 package com.example.planet_jumper
 
 import android.os.Looper
@@ -33,4 +34,4 @@ abstract class BaseRecyclerViewAdapter<T>: RecyclerView.Adapter<RecyclerView.Vie
     private fun reload() {
         Handler(Looper.getMainLooper()).post { notifyDataSetChanged()}
     }
-}
+}*/
