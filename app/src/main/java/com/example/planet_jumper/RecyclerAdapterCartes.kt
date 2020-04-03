@@ -1,13 +1,16 @@
 package com.example.planet_jumper
 
+import android.service.media.MediaBrowserService
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.carte_jeu.view.*
+import kotlinx.android.synthetic.main.carte_jeu_item.view.*
 
 class RecyclerAdapterCartes(private val deck: ArrayList<Cartes>): RecyclerView.Adapter<RecyclerAdapterCartes.CartesHolder>() {
 
@@ -15,21 +18,30 @@ class RecyclerAdapterCartes(private val deck: ArrayList<Cartes>): RecyclerView.A
         parent: ViewGroup,
         viewType: Int
     ): RecyclerAdapterCartes.CartesHolder {
-        val inflatedView: View = parent.inflate(R.layout.carte_jeu, false)
+        val inflatedView: View = parent.inflate(R.layout.carte_jeu_item, false)
         return CartesHolder(inflatedView)
     }
+
+
+    override fun getItemCount(): Int = deck.size
+
+
+    //val carte: Cartes = deck[position]
+
 
 /*    override fun getItemCount(): Int {
         listeCartes.size
     }*/
 
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        var carteHolder = holder as? CartesHolder
-        carteHolder?.setUpView(laCarte = getItem(position))
+    override fun onBindViewHolder(holder: RecyclerAdapterCartes.CartesHolder, position: Int) {
+        //var carteHolder = holder as? CartesHolder
+        //carteHolder?.setUpView(laCarte = getItem(position))
+        val carte: Cartes = deck[position]
+        holder.bindCarte(carte)
     }
 
-    class CartesHolder(private val view: View): RecyclerView.ViewHolder(v), View.OnClickListener {
+    class CartesHolder(private val view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
 
         //private var imageView: ImageView = v.carteJeu_image
         //private val textView: TextView = view.text_view
@@ -40,9 +52,16 @@ class RecyclerAdapterCartes(private val deck: ArrayList<Cartes>): RecyclerView.A
             view.setOnClickListener(this)
         }
 
-        fun setUpView(carte: Cartes) {
+        fun bindCarte(carte: Cartes) {
+
             this.carte = carte
             view.carteJeu_titre.text = carte.nom
+            view.carteJeu_description.text = carte.effet
+            // à faire: remplir image et description aussi  ????
+
+            /*fun setUpView(carte: Cartes) {
+                this.carte = carte
+                view.carteJeu_titre.text = carte.nom*/
             // à faire: remplir image et description aussi
 
 
@@ -53,7 +72,10 @@ class RecyclerAdapterCartes(private val deck: ArrayList<Cartes>): RecyclerView.A
 
         override fun onClick(v: View?) {
 
-            val context = itemView.context
+            //val context = itemView.context
+            Toast.makeText(v?.context, "Clic", Toast.LENGTH_LONG).show()
+
+
             //val showCarteIntent = Intent(context, P)
 
             //itemClickListener?.onItemClick(adapterPosition, v)
@@ -61,11 +83,9 @@ class RecyclerAdapterCartes(private val deck: ArrayList<Cartes>): RecyclerView.A
 
     }
 
-    override fun onBindViewHolder(holder: CartesHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
+}
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+private fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
+
+    return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 }

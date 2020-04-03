@@ -34,7 +34,16 @@ class Planete: AppCompatActivity(), View.OnClickListener {
                 /*val carte = findViewById<View>(R.id.carte_vaisseau)
                 carte?.visibility = View.VISIBLE*/
 
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_cartes, FragCartes.newInstance(), FragCartes.TAG).commit()
+                //supportFragmentManager.beginTransaction().replace(R.id.fragment_cartes, FragCartes.newInstance(), FragCartes.TAG).commit()
+
+                val fragCartes: FragCartes = FragCartes.newInstance()
+
+
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragment_cartes, fragCartes)
+                    .addToBackStack(null)
+                    .commit()
             }
         }
 

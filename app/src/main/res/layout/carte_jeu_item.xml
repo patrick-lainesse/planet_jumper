@@ -28,6 +28,7 @@
                 android:src="@drawable/rocket_icon"/>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/carteJeu_titre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="2dp"
@@ -35,17 +36,16 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:textSize="14sp"
-                android:text="Correct course"
-                android:id="@+id/carteJeu_titre" />
+                android:text="Correct course" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/carteJeu_description"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:text="Your ship corrects it course by 0.5%, fuel consumption is down 0.1 L/km."
-            android:id="@+id/carteJeu_description"/>
+            android:text="Your ship corrects it course by 0.5%, fuel consumption is down 0.1 L/km." />
 
 
 
