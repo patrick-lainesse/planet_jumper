@@ -65,7 +65,13 @@ class FragCartes : Fragment() {
         deck.add(Cartes("Trois", "Trad", "mage", "Rhume"))
         deck.add(Cartes("Quatre", "Trad", "mage", "Cerveau"))
         deck.add(Cartes("Cinq", "Trad", "mage", "Coqueliquot"))
-        deck.add(Cartes("Six", "Trad", "mage", "Oli"))
+        deck.add(Cartes("Six", "Trad", "mage", "Manon"))
+        deck.add(Cartes("Sept", "Trad", "mage", "Condilons"))
+        deck.add(Cartes("Huit", "Trad", "mage", "Gustave"))
+        deck.add(Cartes("Neuf", "Trad", "mage", "Violette"))
+        deck.add(Cartes("Dix", "Trad", "mage", "Gugu"))
+        deck.add(Cartes("Onze", "Trad", "mage", "Viovio"))
+        deck.add(Cartes("Douze", "Trad", "mage", "Rococo, rococo, rococo"))
 
         val view: View = inflater.inflate(frag_cartes, container, false)
 
