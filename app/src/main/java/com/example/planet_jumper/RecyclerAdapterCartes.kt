@@ -22,17 +22,7 @@ class RecyclerAdapterCartes(private val deck: ArrayList<Cartes>): RecyclerView.A
         return CartesHolder(inflatedView)
     }
 
-
     override fun getItemCount(): Int = deck.size
-
-
-    //val carte: Cartes = deck[position]
-
-
-/*    override fun getItemCount(): Int {
-        listeCartes.size
-    }*/
-
 
     override fun onBindViewHolder(holder: RecyclerAdapterCartes.CartesHolder, position: Int) {
         //var carteHolder = holder as? CartesHolder
@@ -42,9 +32,6 @@ class RecyclerAdapterCartes(private val deck: ArrayList<Cartes>): RecyclerView.A
     }
 
     class CartesHolder(private val view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
-
-        //private var imageView: ImageView = v.carteJeu_image
-        //private val textView: TextView = view.text_view
 
         private var carte: Cartes? = null
 
@@ -62,23 +49,19 @@ class RecyclerAdapterCartes(private val deck: ArrayList<Cartes>): RecyclerView.A
             /*fun setUpView(carte: Cartes) {
                 this.carte = carte
                 view.carteJeu_titre.text = carte.nom*/
-            // à faire: remplir image et description aussi
+            // à faire: remplir image et description aussi  ???
 
 
-            //laCarte?.nom?.let { imageView.setImageResource(it) }        // était resId, pas sûr que ça fonctionne carte.nom pour setImageResource...
-            //textView.text = user?.name
-
+            //laCarte?.nom?.let { imageView.setImageResource(it) }        // était resId, pas sûr que ça fonctionne carte.nom pour setImageResource... ????
         }
 
         override fun onClick(v: View?) {
 
-            //val context = itemView.context
             Toast.makeText(v?.context, "Clic", Toast.LENGTH_LONG).show()
-
 
             //val showCarteIntent = Intent(context, P)
 
-            //itemClickListener?.onItemClick(adapterPosition, v)
+            //itemClickListener?.onItemClick(adapterPosition, v)???
         }
 
     }

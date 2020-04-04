@@ -22,22 +22,18 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-    <FrameLayout
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
-<!--
     <include
-        layout="@layout/carte_jeu"
+        layout="@layout/carte_jeu_item"
         android:id="@+id/carte_vaisseau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp"
-        android:visibility="gone"/>
--->
+        android:layout_marginBottom="100dp"/>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

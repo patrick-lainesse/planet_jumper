@@ -25,14 +25,15 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/rocket_icon"/>
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/action_icons"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/carteJeu_titre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:paddingTop="2dp"
                 android:paddingLeft="10dp"
                 android:paddingStart="10dp"
