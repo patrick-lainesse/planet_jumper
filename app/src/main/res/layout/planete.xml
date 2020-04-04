@@ -24,17 +24,11 @@
 
 
     <FrameLayout
-        android:id="@+id/fragment_cartes"
+        android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
-    </FrameLayout>
 
-    <!--<fragment
-        android:id="@+id/fragment_cartes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
--->
 <!--
     <include
         layout="@layout/carte_jeu"

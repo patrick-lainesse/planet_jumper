@@ -6,9 +6,11 @@ import android.renderscript.ScriptGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.planet_jumper.R.layout.frag_cartes
 import java.lang.ClassCastException
 
 
@@ -65,10 +67,11 @@ class FragCartes : Fragment() {
         deck.add(Cartes("Cinq", "Trad", "mage", "Coqueliquot"))
         deck.add(Cartes("Six", "Trad", "mage", "Oli"))
 
-        val view: View = inflater.inflate(R.layout.carte_jeu_item, container, false)
+        val view: View = inflater.inflate(frag_cartes, container, false)
 
 
         // réponse à la fin ici: https://stackoverflow.com/questions/56152357/how-can-i-fix-the-error-java-lang-illegalstateexception-recyclerview-must-not/56160373
+
 
 
         //val activity = activity as Context
@@ -78,6 +81,7 @@ class FragCartes : Fragment() {
         //recyclerView.adapter = ListeCartesAdapter(activity)
         //de Galacticon:
         recyclerView.adapter = RecyclerAdapterCartes(deck)
+
 
         // reste à faire p-e sur Galaction: setScrollListener pour charger des images, et viewItemTouchListener
         return view

@@ -41,7 +41,7 @@ class Planete: AppCompatActivity(), View.OnClickListener {
 
                 supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_cartes, fragCartes)
+                    .add(R.id.frame, fragCartes)
                     .addToBackStack(null)
                     .commit()
             }
