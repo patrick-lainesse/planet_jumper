@@ -18,6 +18,7 @@ class FragCartes : Fragment() {
 
     private lateinit var listener: OnCarteSelected  // nécessaire???
     private var deck: ArrayList<Cartes> = ArrayList()
+    private lateinit var dbhelper: DBHelper
 
     companion object {
 
@@ -26,10 +27,13 @@ class FragCartes : Fragment() {
         }
     }
 
-    /*override fun onAttach(context: Context) {
+    // fonction qui fournit le contexte pour le dbhelper
+    override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        if(context is OnCarteSelected) {    //???
+        dbhelper = DBHelper(context)
+
+        /*if(context is OnCarteSelected) {    //???
             listener = context
         } else {
             throw ClassCastException(context.toString() + " doit implémenter OnCarteSelected.")
@@ -37,21 +41,23 @@ class FragCartes : Fragment() {
 
         // obtenir les données propres aux cartes
         val resources = context.resources
-        *//* doit implémenter des arraylist des noms de cartes, mais doit réfléchir à comment peupler ces AList
+        // doit implémenter des arraylist des noms de cartes, mais doit réfléchir à comment peupler ces AList
         selon les cartes que possède le joueur à un moment donné
 
         noms = resources.getStringArray(R.array.names)
         descriptions
         urls
 
-        obtenir les images*//*
-    }*/
+        obtenir les images*/
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        //dbhelper = DBHelper(context)
 
         // test???
         deck.add(Cartes("Une", "Trad", "mage", "Allo"))
@@ -66,6 +72,7 @@ class FragCartes : Fragment() {
         deck.add(Cartes("Dix", "Trad", "mage", "Gugu"))
         deck.add(Cartes("Onze", "Trad", "mage", "Viovio"))
         deck.add(Cartes("Douze", "Trad", "mage", "Rococo, rococo, rococo"))
+
 
         val view: View = inflater.inflate(frag_cartes, container, false)
 

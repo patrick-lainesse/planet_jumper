@@ -23,6 +23,7 @@ object  DBContenuVaisseau {
         companion object {
             val NOM_TABLE = "cartes"
             val COLONNE_CARTE_ID = "carte_id"
+            val COLONNE_IMAGE = "image"
             val COLONNE_NOM = "nom"
             val COLONNE_CATEGORIE = "categorie"
             val COLONNE_EFFET = "effet"

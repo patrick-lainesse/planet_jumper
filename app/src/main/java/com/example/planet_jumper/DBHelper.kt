@@ -64,10 +64,19 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS, "1400")
         }
         db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
+
+        values.apply {
+            put(DBContenuVaisseau.CartesJeu.COLONNE_NOM, "Burst")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_IMAGE, "Du beau feu")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CATEGORIE, "Acceleration")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_EFFET, "Diminue la distance de 100 000 km et augmente la température de 100°C.")
+        }
+        db?.insert(DBContenuVaisseau.CartesJeu.NOM_TABLE, null, values)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL(SQL_DELETE_ENTRIES)
+        db?.execSQL(EFFACER_TABLE_CARTES)
         onCreate(db)
     }
 
@@ -98,7 +107,6 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
                 consommation = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_CONSOMMATION))
                 poids = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS))
 
-                //leVaisseau = ModeleVaisseau(nom, vitesse, capacite, consommation, poids)
                 tableVaisseaux.add(ModeleVaisseau(nom, vitesse, capacite, consommation, poids))
                 cursor.moveToNext()
             }
@@ -107,6 +115,41 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
         cursor.close()
 
         return tableVaisseaux[0]
+    }
+
+    // fonction qui lit l'ensemble des cartes de la table des cartes ??? à mettre à jour selon la sélection du vaisseau, et éventuellement selon les cartes que le joueur possède
+    fun lireCartes(): ArrayList<Cartes> {
+        val deck = ArrayList<Cartes>()
+        val db = writableDatabase
+        var cursor: Cursor? = null
+
+        try {
+            cursor = db!!.rawQuery("SELECT * FROM" + DBContenuVaisseau.CartesJeu.NOM_TABLE, null)
+        } catch (e: SQLiteException) {
+            db.execSQL(CREER_TABLE_CARTES)
+        }
+
+        // rajouter id ici???
+        var nom: String
+        var image: String
+        var categorie: String
+        var effet: String
+
+        if(cursor!!.moveToFirst()) {
+            while(cursor.isAfterLast == false) {
+                nom = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_NOM))
+                image = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_IMAGE))
+                categorie = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_CATEGORIE))
+                effet = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_EFFET))
+
+                deck.add(Cartes(nom, image, categorie, effet))
+                cursor.moveToNext()
+            }
+        }
+
+        cursor.close()
+
+        return deck
     }
 
     // implantation d'un companion object qui fournit les paramètres à la classe étendue SQLiteOpenHelper
@@ -125,11 +168,13 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
         private val CREER_TABLE_CARTES = "CREATE TABLE " + DBContenuVaisseau.CartesJeu.NOM_TABLE + " (" +
                 DBContenuVaisseau.CartesJeu.COLONNE_CARTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 DBContenuVaisseau.CartesJeu.COLONNE_NOM + " TEXT," +
+                DBContenuVaisseau.CartesJeu.COLONNE_IMAGE + " TEXT," +
                 DBContenuVaisseau.CartesJeu.COLONNE_CATEGORIE + " TEXT," +
                 DBContenuVaisseau.CartesJeu.COLONNE_EFFET + " TEXT)"
 
         // manque les images dans les db????
 
         private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE
+        private val EFFACER_TABLE_CARTES = "DROP TABLE IF EXISTS " + DBContenuVaisseau.CartesJeu.NOM_TABLE
     }
 }
