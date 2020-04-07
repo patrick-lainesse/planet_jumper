@@ -30,5 +30,5 @@ object  DBContenuVaisseau {
     }
 }
 
-// manque les images dans les deux db
+// ???? manque les images dans les deux db
 // val nom: String, val categorie: String, val image: String, val effet:String

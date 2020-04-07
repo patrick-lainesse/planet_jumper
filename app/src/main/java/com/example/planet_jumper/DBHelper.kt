@@ -23,6 +23,7 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
         /* voir companion object à la fin de cette classe et le fichier DBContenuVaisseau.kt pour les détails
         de la création de la db */
         db?.execSQL(SQL_CREATE_ENTRIES)
+        db?.execSQL(CREER_TABLE_CARTES)
 
         val values = ContentValues().apply {
             put(DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID, "1")
@@ -120,6 +121,14 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE + " TEXT," +
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_CONSOMMATION + " TEXT," +
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS + " TEXT)"
+
+        private val CREER_TABLE_CARTES = "CREATE TABLE " + DBContenuVaisseau.CartesJeu.NOM_TABLE + " (" +
+                DBContenuVaisseau.CartesJeu.COLONNE_CARTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                DBContenuVaisseau.CartesJeu.COLONNE_NOM + " TEXT," +
+                DBContenuVaisseau.CartesJeu.COLONNE_CATEGORIE + " TEXT," +
+                DBContenuVaisseau.CartesJeu.COLONNE_EFFET + " TEXT)"
+
+        // manque les images dans les db????
 
         private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE
     }
