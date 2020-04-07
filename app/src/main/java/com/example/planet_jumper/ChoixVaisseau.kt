@@ -17,7 +17,7 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
     private lateinit var vaisseau3: ImageView
     private lateinit var vaisseau4: ImageView
     private var tableVaisseau: MutableList<ImageView> = ArrayList()
-    private lateinit var dbhelperVaisseau: DBHelperVaisseau
+    private lateinit var dbhelper: DBHelper
 
     private var vaisseauChoisi = ModeleVaisseau("", "", "", "", "")
 
@@ -66,7 +66,7 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         val confirmerChoix = findViewById<TextView>(R.id.confirmer)
         val retour = findViewById<TextView>(R.id.retourTV)
         val carte = findViewById<View>(R.id.carte_vaisseau)
-        dbhelperVaisseau = DBHelperVaisseau(this)
+        dbhelper = DBHelper(this)
 
 
         val imageIV = carte.findViewById<AppCompatImageView>(R.id.card_image)
@@ -85,19 +85,19 @@ class ChoixVaisseau: AppCompatActivity(), View.OnClickListener {
         if (v != null) {
             when(v.id) {
                 R.id.vaisseau1, R.id.ninaTV -> {
-                    vaisseauChoisi = dbhelperVaisseau.lireVaisseau("Nina")
+                    vaisseauChoisi = dbhelper.lireVaisseau("Nina")
                     imageIV.setBackgroundResource(R.drawable.nina)
                 }
                 R.id.vaisseau2, R.id.pintaTV -> {
-                    vaisseauChoisi = dbhelperVaisseau.lireVaisseau("Pinta")
+                    vaisseauChoisi = dbhelper.lireVaisseau("Pinta")
                     imageIV.setBackgroundResource(R.drawable.pinta)
                 }
                 R.id.vaisseau3, R.id.santaTV -> {
-                    vaisseauChoisi = dbhelperVaisseau.lireVaisseau("Santa Maria")
+                    vaisseauChoisi = dbhelper.lireVaisseau("Santa Maria")
                     imageIV.setBackgroundResource(R.drawable.santa_maria)
                 }
                 R.id.vaisseau4, R.id.victoriaTV -> {
-                    vaisseauChoisi = dbhelperVaisseau.lireVaisseau("Victoria")
+                    vaisseauChoisi = dbhelper.lireVaisseau("Victoria")
                     imageIV.setBackgroundResource(R.drawable.victoria)
                 }
                 R.id.retourTV -> {
