@@ -19,7 +19,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase?) {
-
+//test merge branch
         /* voir companion object à la fin de cette classe et le fichier DBContenuVaisseau.kt pour les détails
         de la création de la db */
         db?.execSQL(SQL_CREATE_ENTRIES)
