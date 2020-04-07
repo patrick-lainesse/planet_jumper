@@ -2,6 +2,8 @@ package com.example.planet_jumper
 
 import android.provider.BaseColumns
 
+// contract class pour stocker les constantes utilisées pour créer les tables SQL
+
 object  DBContenuVaisseau {
 
     // classe pour définir les paramètres de la table SQL des vaisseaux
