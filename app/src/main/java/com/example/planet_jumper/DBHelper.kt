@@ -100,7 +100,7 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
         var poids: String
 
         if(cursor!!.moveToFirst()) {
-            while(cursor.isAfterLast == false) {
+            while(!cursor.isAfterLast) {
                 nom = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM))
                 vitesse = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE))
                 capacite = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.EntreeVaisseau.COLONNE_CAPACITE))
@@ -136,7 +136,7 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
         var effet: String
 
         if(cursor!!.moveToFirst()) {
-            while(cursor.isAfterLast == false) {
+            while(!cursor.isAfterLast) {
                 nom = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_NOM))
                 image = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_IMAGE))
                 categorie = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_CATEGORIE))
@@ -157,7 +157,7 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
         val DATABASE_NAME = "vaisseaux_directory.db"
         val DATABASE_VERSION = 1
 
-        private val SQL_CREATE_ENTRIES = "CREATE TABLE " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE + " (" +
+        private val SQL_CREATE_ENTRIES = "CREATE TABLE IF NOT EXISTS " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE + " (" +
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID + " TEXT PRIMARY KEY," +
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_NOM + " TEXT," +
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_VITESSE + " TEXT," +
@@ -165,7 +165,7 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_CONSOMMATION + " TEXT," +
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS + " TEXT)"
 
-        private val CREER_TABLE_CARTES = "CREATE TABLE " + DBContenuVaisseau.CartesJeu.NOM_TABLE + " (" +
+        private val CREER_TABLE_CARTES = "CREATE TABLE IF NOT EXISTS " + DBContenuVaisseau.CartesJeu.NOM_TABLE + " (" +
                 DBContenuVaisseau.CartesJeu.COLONNE_CARTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 DBContenuVaisseau.CartesJeu.COLONNE_NOM + " TEXT," +
                 DBContenuVaisseau.CartesJeu.COLONNE_IMAGE + " TEXT," +

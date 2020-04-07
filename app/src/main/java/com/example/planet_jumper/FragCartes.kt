@@ -32,8 +32,10 @@ class FragCartes : Fragment() {
         super.onAttach(context)
 
         dbhelper = DBHelper(context)
+        //deck = dbhelper.lireCartes()
 
-        /*if(context is OnCarteSelected) {    //???
+/*
+if(context is OnCarteSelected) {    //???
             listener = context
         } else {
             throw ClassCastException(context.toString() + " doit implémenter OnCarteSelected.")
@@ -41,14 +43,16 @@ class FragCartes : Fragment() {
 
         // obtenir les données propres aux cartes
         val resources = context.resources
-        // doit implémenter des arraylist des noms de cartes, mais doit réfléchir à comment peupler ces AList
+        // doit implémenter des arraylist des noms de cartes, mais doit réfléchir à comment peupler ces AList?????
         selon les cartes que possède le joueur à un moment donné
 
         noms = resources.getStringArray(R.array.names)
         descriptions
         urls
 
-        obtenir les images*/
+        obtenir les images
+*/
+
     }
 
     override fun onCreateView(
@@ -58,6 +62,8 @@ class FragCartes : Fragment() {
     ): View? {
 
         //dbhelper = DBHelper(context)
+
+        deck = dbhelper.lireCartes()
 
         // test???
         deck.add(Cartes("Une", "Trad", "mage", "Allo"))
