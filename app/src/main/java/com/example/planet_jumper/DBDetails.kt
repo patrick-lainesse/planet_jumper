@@ -4,7 +4,7 @@ import android.provider.BaseColumns
 
 // contract class pour stocker les constantes utilisées pour créer les tables SQL
 
-object  DBContenuVaisseau {
+object  DBDetails {
 
     // classe pour définir les paramètres de la table SQL des vaisseaux
     class EntreeVaisseau: BaseColumns {
@@ -21,12 +21,12 @@ object  DBContenuVaisseau {
 
     class CartesJeu: BaseColumns {
         companion object {
-            val NOM_CTABLE = "cartes"
+            val NOM_TABLE = "cartes"
             val COLONNE_CARTE_ID = "carte_id"
-            val COLONNE_CNOM = "nom"
-            val COLONNE_CIMAGE = "image"
-            val COLONNE_CCATEGORIE = "categorie"
-            val COLONNE_CEFFET = "effet"
+            val COLONNE_NOM = "nom"
+            val COLONNE_IMAGE = "image"
+            val COLONNE_CATEGORIE = "categorie"
+            val COLONNE_EFFET = "effet"
         }
     }
 }

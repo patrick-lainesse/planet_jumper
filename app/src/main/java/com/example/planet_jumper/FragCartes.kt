@@ -63,24 +63,9 @@ if(context is OnCarteSelected) {    //???
 
         //dbhelper = DBHelper(context)
 
-        //deck = dbhelper.lireCartes()
-        deck.add(dbhelper.lireCartes())
-        deck.add(Cartes("Une", "Trad", "mage", "Allo"))
-
-/*        // test???
-        deck.add(Cartes("Une", "Trad", "mage", "Allo"))
-        deck.add(Cartes("Deux", "Trad", "mage", "Bobo"))
-        deck.add(Cartes("Trois", "Trad", "mage", "Rhume"))
-        deck.add(Cartes("Quatre", "Trad", "mage", "Cerveau"))
-        deck.add(Cartes("Cinq", "Trad", "mage", "Coqueliquot"))
-        deck.add(Cartes("Six", "Trad", "mage", "Manon"))
-        deck.add(Cartes("Sept", "Trad", "mage", "Condilons"))
-        deck.add(Cartes("Huit", "Trad", "mage", "Gustave"))
-        deck.add(Cartes("Neuf", "Trad", "mage", "Violette"))
-        deck.add(Cartes("Dix", "Trad", "mage", "Gugu"))
-        deck.add(Cartes("Onze", "Trad", "mage", "Viovio"))
-        deck.add(Cartes("Douze", "Trad", "mage", "Rococo, rococo, rococo"))*/
-
+        deck = dbhelper.lireCartes()
+        //deck.add(dbhelper.lireCartes())
+        deck.add(Cartes(1000,"Une", "Trad", "mage", "Allo"))
 
         val view: View = inflater.inflate(frag_cartes, container, false)
 
@@ -89,10 +74,9 @@ if(context is OnCarteSelected) {    //???
         recyclerView.adapter = RecyclerAdapterCartes(deck)
 
         return view
-
-        // reste à faire p-e sur Galaction: setScrollListener pour charger des images, et viewItemTouchListener ????
     }
 
+    // ???
     interface OnCarteSelected {
         fun onCarteSelected(carte: Cartes)
     }
