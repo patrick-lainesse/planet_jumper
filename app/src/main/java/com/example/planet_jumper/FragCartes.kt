@@ -63,9 +63,11 @@ if(context is OnCarteSelected) {    //???
 
         //dbhelper = DBHelper(context)
 
-        deck = dbhelper.lireCartes()
+        //deck = dbhelper.lireCartes()
+        deck.add(dbhelper.lireCartes())
+        deck.add(Cartes("Une", "Trad", "mage", "Allo"))
 
-        // test???
+/*        // test???
         deck.add(Cartes("Une", "Trad", "mage", "Allo"))
         deck.add(Cartes("Deux", "Trad", "mage", "Bobo"))
         deck.add(Cartes("Trois", "Trad", "mage", "Rhume"))
@@ -77,7 +79,7 @@ if(context is OnCarteSelected) {    //???
         deck.add(Cartes("Neuf", "Trad", "mage", "Violette"))
         deck.add(Cartes("Dix", "Trad", "mage", "Gugu"))
         deck.add(Cartes("Onze", "Trad", "mage", "Viovio"))
-        deck.add(Cartes("Douze", "Trad", "mage", "Rococo, rococo, rococo"))
+        deck.add(Cartes("Douze", "Trad", "mage", "Rococo, rococo, rococo"))*/
 
 
         val view: View = inflater.inflate(frag_cartes, container, false)

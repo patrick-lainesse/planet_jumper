@@ -65,13 +65,23 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
         }
         db?.insert(DBContenuVaisseau.EntreeVaisseau.NOM_TABLE, null, values)
 
-        values.apply {
-            put(DBContenuVaisseau.CartesJeu.COLONNE_NOM, "Burst")
-            put(DBContenuVaisseau.CartesJeu.COLONNE_IMAGE, "Du beau feu")
-            put(DBContenuVaisseau.CartesJeu.COLONNE_CATEGORIE, "Acceleration")
-            put(DBContenuVaisseau.CartesJeu.COLONNE_EFFET, "Diminue la distance de 100 000 km et augmente la température de 100°C.")
+        val valuesCartes = ContentValues().apply {
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CARTE_ID, "1")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CNOM, "Burst")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CIMAGE, "Du beau feu")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CCATEGORIE, "Acceleration")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CEFFET, "Diminue la distance de 100 000 km et augmente la température de 100°C.")
         }
-        db?.insert(DBContenuVaisseau.CartesJeu.NOM_TABLE, null, values)
+        db?.insert(DBContenuVaisseau.CartesJeu.NOM_CTABLE, null, valuesCartes)
+
+        valuesCartes.apply {
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CARTE_ID, "2")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CNOM, "Réparation")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CIMAGE, "Un outil")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CCATEGORIE, "Réparation")
+            put(DBContenuVaisseau.CartesJeu.COLONNE_CEFFET, "Répare jusqu'à 10% de l'état du vaisseau. Ne peut avoir un vaisseau réparé au-delà de 100%.")
+        }
+        db?.insert(DBContenuVaisseau.CartesJeu.NOM_CTABLE, null, valuesCartes)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -112,19 +122,26 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
             }
         }
 
+        // test
+        if (cursor != null) {
+            var nb = cursor.count
+        }
+
         cursor.close()
 
         return tableVaisseaux[0]
     }
 
     // fonction qui lit l'ensemble des cartes de la table des cartes ??? à mettre à jour selon la sélection du vaisseau, et éventuellement selon les cartes que le joueur possède
-    fun lireCartes(): ArrayList<Cartes> {
+    //fun lireCartes(): ArrayList<Cartes> {
+    fun lireCartes(): Cartes {
         val deck = ArrayList<Cartes>()
         val db = writableDatabase
         var cursor: Cursor? = null
 
         try {
-            cursor = db!!.rawQuery("SELECT * FROM" + DBContenuVaisseau.CartesJeu.NOM_TABLE, null)
+            //cursor = db!!.rawQuery("SELECT * FROM " + DBContenuVaisseau.CartesJeu.NOM_TABLE, null)
+            cursor = db!!.rawQuery("SELECT * FROM " + DBContenuVaisseau.CartesJeu.NOM_CTABLE + " WHERE " + DBContenuVaisseau.CartesJeu.COLONNE_CNOM + "= 'Burst'", null)
         } catch (e: SQLiteException) {
             db.execSQL(CREER_TABLE_CARTES)
         }
@@ -137,25 +154,32 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
 
         if(cursor!!.moveToFirst()) {
             while(!cursor.isAfterLast) {
-                nom = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_NOM))
-                image = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_IMAGE))
-                categorie = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_CATEGORIE))
-                effet = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_EFFET))
+
+                // ??? userModel.setId(c.getInt(c.getColumnIndex(KEY_ID)))
+                nom = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_CNOM))
+                image = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_CIMAGE))
+                categorie = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_CCATEGORIE))
+                effet = cursor.getString(cursor.getColumnIndex(DBContenuVaisseau.CartesJeu.COLONNE_CEFFET))
 
                 deck.add(Cartes(nom, image, categorie, effet))
                 cursor.moveToNext()
             }
         }
 
+        // test???
+        if (cursor != null) {
+            var nb = cursor.count
+        }
+
         cursor.close()
 
-        return deck
+        return deck[0]
     }
 
     // implantation d'un companion object qui fournit les paramètres à la classe étendue SQLiteOpenHelper
     companion object {
         val DATABASE_NAME = "vaisseaux_directory.db"
-        val DATABASE_VERSION = 1
+        val DATABASE_VERSION = 2
 
         private val SQL_CREATE_ENTRIES = "CREATE TABLE IF NOT EXISTS " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE + " (" +
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_VAISSEAU_ID + " TEXT PRIMARY KEY," +
@@ -165,16 +189,18 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_CONSOMMATION + " TEXT," +
                 DBContenuVaisseau.EntreeVaisseau.COLONNE_POIDS + " TEXT)"
 
-        private val CREER_TABLE_CARTES = "CREATE TABLE IF NOT EXISTS " + DBContenuVaisseau.CartesJeu.NOM_TABLE + " (" +
-                DBContenuVaisseau.CartesJeu.COLONNE_CARTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                DBContenuVaisseau.CartesJeu.COLONNE_NOM + " TEXT," +
-                DBContenuVaisseau.CartesJeu.COLONNE_IMAGE + " TEXT," +
-                DBContenuVaisseau.CartesJeu.COLONNE_CATEGORIE + " TEXT," +
-                DBContenuVaisseau.CartesJeu.COLONNE_EFFET + " TEXT)"
+        //???DBContenuVaisseau.CartesJeu.COLONNE_CARTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+        // DBContenuVaisseau.CartesJeu.COLONNE_NOM + " TEXT NOT NULL," +
+        private val CREER_TABLE_CARTES = "CREATE TABLE IF NOT EXISTS " + DBContenuVaisseau.CartesJeu.NOM_CTABLE + " (" +
+                DBContenuVaisseau.CartesJeu.COLONNE_CARTE_ID + " TEXT PRIMARY KEY," +
+                DBContenuVaisseau.CartesJeu.COLONNE_CNOM + " TEXT," +
+                DBContenuVaisseau.CartesJeu.COLONNE_CIMAGE + " TEXT," +
+                DBContenuVaisseau.CartesJeu.COLONNE_CCATEGORIE + " TEXT," +
+                DBContenuVaisseau.CartesJeu.COLONNE_CEFFET + " TEXT)"
 
         // manque les images dans les db????
 
         private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContenuVaisseau.EntreeVaisseau.NOM_TABLE
-        private val EFFACER_TABLE_CARTES = "DROP TABLE IF EXISTS " + DBContenuVaisseau.CartesJeu.NOM_TABLE
+        private val EFFACER_TABLE_CARTES = "DROP TABLE IF EXISTS " + DBContenuVaisseau.CartesJeu.NOM_CTABLE
     }
 }
