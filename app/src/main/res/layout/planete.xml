@@ -13,11 +13,19 @@
         android:background="@color/colorPrimaryDark">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bouton_cartes"
+        android:id="@+id/bouton_cartes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/cards"
+        android:background="@color/colorAccent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bouton_planetes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/cards"
+            android:text="Planets"
             android:background="@color/colorAccent"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

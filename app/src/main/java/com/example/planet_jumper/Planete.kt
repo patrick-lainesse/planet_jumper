@@ -24,7 +24,9 @@ class Planete: AppCompatActivity(), View.OnClickListener {
     private fun setListener() {
 
         val boutonCarte = findViewById<AppCompatButton>(R.id.bouton_cartes)
+        val boutonPlanetes = findViewById<AppCompatButton>(R.id.bouton_planetes)
         boutonCarte.setOnClickListener(this)
+        boutonPlanetes.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -39,6 +41,19 @@ class Planete: AppCompatActivity(), View.OnClickListener {
                     supportFragmentManager
                         .beginTransaction()
                         .add(R.id.frame, fragCartes, "fragCartes")
+                        .addToBackStack(null)
+                        .commit()
+                }
+            }
+            R.id.bouton_planetes -> {
+
+                // vérifie si le fragment pour afficher la liste des planètes existe déjà, et si non, le créer
+                if(supportFragmentManager.findFragmentByTag("fragPlanetes") == null) {
+
+                    val fragPlanetes: FragListePlanetes= FragListePlanetes.newInstance()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .add(R.id.frame, fragPlanetes, "fragPlanetes")
                         .addToBackStack(null)
                         .commit()
                 }
