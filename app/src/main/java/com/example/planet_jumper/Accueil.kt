@@ -9,6 +9,7 @@
     Police 8-bit: Joiro Hatgaya - https://www.dafont.com/8bit-wonder.font
     Pixelisation des images: Gimp et imgonline: https://www.imgonline.com.ua/eng/8bit-picture.php
     <a href="https://www.vecteezy.com/free-vector/spaceship-icon">Spaceship Icon Vectors by Vecteezy</a>
+    Image de planète: https://dlpng.com/png/1550207
 
     Idées:
     - Écran paramètres pour changer les unités de mensure

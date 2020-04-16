@@ -13,4 +13,5 @@
     <string name="victoria" translatable="false">Victoria</string>
     <string name="back">Back</string>
     <string name="cards">Cards</string>
+    <string name="planets">Planets</string>
 </resources>

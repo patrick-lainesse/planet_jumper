@@ -16,7 +16,7 @@ import java.lang.ClassCastException
 
 class FragCartes : Fragment() {
 
-    private lateinit var listener: OnCarteSelected  // nécessaire???
+    private lateinit var listener: OnCarteSelected  // à implémenter, va lancer la partie???
     private var deck: ArrayList<Cartes> = ArrayList()
     private lateinit var dbhelper: DBHelper
 
