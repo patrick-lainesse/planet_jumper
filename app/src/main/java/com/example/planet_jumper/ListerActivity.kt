@@ -1,7 +1,6 @@
 package com.example.planet_jumper
 
 import android.os.Bundle
-import androidx.core.widget.ImageViewCompat
 //import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
@@ -11,11 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 import java.util.*
 
 class ListerActivity : AppCompatActivity() {
@@ -33,7 +29,7 @@ class ListerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lister)
+        setContentView(R.layout.frag_planetes)
         liste = findViewById<View>(R.id.liste) as ListView
         lister()
     }
