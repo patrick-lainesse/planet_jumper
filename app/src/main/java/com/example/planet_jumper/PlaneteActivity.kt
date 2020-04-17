@@ -2,12 +2,8 @@ package com.example.planet_jumper
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 class Planete: AppCompatActivity(), View.OnClickListener {
 
@@ -15,7 +11,7 @@ class Planete: AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.planete)
+        setContentView(R.layout.planete_activity)
 
         // récupère le choix de vaisseau qui a été fait afin de sélectionner la liste de cartes associées à ce vaisseau en particulier
         vaisseau = intent.extras!!.getString("choix").toString()

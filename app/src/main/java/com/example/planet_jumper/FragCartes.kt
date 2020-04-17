@@ -35,7 +35,7 @@ class FragCartes : Fragment() {
         //deck = dbhelper.lireCartes()
 
 /*
-if(context is OnCarteSelected) {    //???
+if(context is OnCarteSelected) {    //???    va devoir implémenter pour afficher plus d'infos sur chaque carte et un flavor text?
             listener = context
         } else {
             throw ClassCastException(context.toString() + " doit implémenter OnCarteSelected.")
@@ -76,7 +76,7 @@ if(context is OnCarteSelected) {    //???
         return view
     }
 
-    // ???
+    // ??? à implémenter éventuellement
     interface OnCarteSelected {
         fun onCarteSelected(carte: Cartes)
     }

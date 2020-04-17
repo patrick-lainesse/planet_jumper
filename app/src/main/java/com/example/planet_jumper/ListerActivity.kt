@@ -73,13 +73,13 @@ class ListerActivity : AppCompatActivity() {
                             Log.d("METEOjson", response.getJSONObject(i).getString("pl_hostname"))
 
                             map = HashMap()
-                            map["planete"] = planete
+                            map["planete_activity"] = planete
                             map["distance"] = distance
                             map["ici"] = distance
                             tabPlanetes.add(map)
                         }
 
-                        val monAdapter = SimpleAdapter(this@ListerActivity, tabPlanetes, R.layout.rangee_planete, arrayOf("planete", "distance", "ici"), intArrayOf(R.id.card_nom_planete, R.id.card_distance_gaia, R.id.card_distance_ici))
+                        val monAdapter = SimpleAdapter(this@ListerActivity, tabPlanetes, R.layout.rangee_planete, arrayOf("planete_activity", "distance", "ici"), intArrayOf(R.id.card_nom_planete, R.id.card_distance_gaia, R.id.card_distance_ici))
                         liste!!.adapter = monAdapter
                         //val iv: ImageViewCompat
 

@@ -24,7 +24,7 @@ class FragListePlanetes: Fragment() {
     var liste: ListView? = null
     lateinit var planete: String
     lateinit var distance: String
-    val KEY_PLANETE: String = "planete"
+    val KEY_PLANETE: String = "planete_activity"
     val KEY_DISTANCE: String = "distance"
     val KEY_ICI: String = "ici"
 
@@ -84,7 +84,7 @@ class FragListePlanetes: Fragment() {
 
                         // ??? décider plus tard si le map 'ici' est nécessaire ou si le calcul va se faire ailleurs, idem pour l'url et les params
                         map = HashMap()
-                        map["planete"] = planete
+                        map["planete_activity"] = planete
                         map["distance"] = distance
                         map["ici"] = distance
                         tabPlanetes.add(map)
@@ -95,9 +95,9 @@ class FragListePlanetes: Fragment() {
                         m2.get("ici").toString()
                     ) })
 
-                    val tabPlanetes2 = tabPlanetes.take(10)
+                    val tabPlanetesReduit = tabPlanetes.take(10)
 
-                    val monAdapter = SimpleAdapter(context, tabPlanetes2, R.layout.rangee_planete, arrayOf("planete", "distance", "ici"), intArrayOf(R.id.card_nom_planete, R.id.card_distance_gaia, R.id.card_distance_ici))
+                    val monAdapter = SimpleAdapter(context, tabPlanetesReduit, R.layout.rangee_planete, arrayOf("planete_activity", "distance", "ici"), intArrayOf(R.id.card_nom_planete, R.id.card_distance_gaia, R.id.card_distance_ici))
                     liste!!.adapter = monAdapter
 
                 } catch (e: JSONException) {
