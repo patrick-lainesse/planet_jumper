@@ -61,10 +61,7 @@ if(context is OnCarteSelected) {    //???    va devoir implémenter pour affiche
         savedInstanceState: Bundle?
     ): View? {
 
-        //dbhelper = DBHelper(context)
-
         deck = dbhelper.lireCartes()
-        //deck.add(dbhelper.lireCartes())
         deck.add(Cartes(1000,"Une", "Trad", "mage", "Allo"))
 
         val view: View = inflater.inflate(frag_cartes, container, false)
