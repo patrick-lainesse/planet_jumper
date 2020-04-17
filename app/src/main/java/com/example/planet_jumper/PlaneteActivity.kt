@@ -7,7 +7,9 @@ import androidx.appcompat.widget.AppCompatButton
 
 class Planete: AppCompatActivity(), View.OnClickListener {
 
+    private var distanceParcourue: Float = 0.0f
     private lateinit var vaisseau: String
+    val KEY_ICI: String = "ici"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,6 +17,7 @@ class Planete: AppCompatActivity(), View.OnClickListener {
 
         // récupère le choix de vaisseau qui a été fait afin de sélectionner la liste de cartes associées à ce vaisseau en particulier
         vaisseau = intent.extras!!.getString("choix").toString()
+        distanceParcourue = intent.extras!!.getFloat(KEY_ICI)
         setListener()
     }
 
@@ -72,6 +75,7 @@ class Planete: AppCompatActivity(), View.OnClickListener {
                     // s'il n'existe pas, le créer
 
                     val fragPlanetes: FragListePlanetes = FragListePlanetes.newInstance()
+
                     supportFragmentManager
                         .beginTransaction()
                         .add(R.id.frame, fragPlanetes, PLANETES_FRAG_TAG)

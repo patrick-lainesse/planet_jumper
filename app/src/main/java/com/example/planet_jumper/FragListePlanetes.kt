@@ -22,6 +22,7 @@ distance au satellite Gaia (situé à mi-distance entre la Terre et le Soleil). 
 trier un arraylist de hashmap */
 class FragListePlanetes: Fragment() {
 
+    private var distanceCumul: Float = 0.0F
     var listView: ListView? = null
     lateinit var adapter: SimpleAdapter
     lateinit var planete: String
@@ -31,6 +32,13 @@ class FragListePlanetes: Fragment() {
     val KEY_ICI: String = "ici"
 
     companion object {
+        @JvmStatic
+        fun newInstance(distanceCumul: Float) = FragListePlanetes().apply {
+            arguments = Bundle().apply {
+                putFloat(KEY_ICI, distanceCumul)
+            }
+        }
+
         fun newInstance(): FragListePlanetes {
             return FragListePlanetes()
         }
@@ -39,6 +47,7 @@ class FragListePlanetes: Fragment() {
     // méthode qui récupère le contexte de l'activité mère, nécessaire pour d'autres fonctions
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        arguments?.getFloat(KEY_ICI)?.let { distanceCumul = it }
     }
 
     override fun onCreateView(
@@ -61,11 +70,10 @@ class FragListePlanetes: Fragment() {
             val choix = adapter.getItem(position)
             //{ici=3.6, planete=YZ Cet, distance=3.6}
             val posVirgule = choix.toString().indexOf(',')
-            val distance = choix.toString().substring(5, posVirgule)
-            //Log.d("LogSetAdapter", choix.toString())
-            Log.d("LogSetAdapter", distance)
+            val distanceGaia = choix.toString().substring(5, posVirgule).toFloat()
+            Log.d("LogSetAdapter", distanceGaia.toString())
             val intent = Intent(context, PrototypeJeu::class.java)
-            intent.putExtra(KEY_ICI, distance)
+            intent.putExtra(KEY_ICI, distanceGaia)
             startActivity(intent)
         }
     }
@@ -74,6 +82,12 @@ class FragListePlanetes: Fragment() {
     fun listerConnexion() {
 
         val tabPlanetes = ArrayList<HashMap<String, String>>()
+        var distanceScope: Float = 10F
+
+        Log.d("logFragPlan", distanceScope.toString())
+        if(distanceCumul > 0) {
+            distanceScope += distanceCumul
+        }
 
         /* L'url agit comme déterminant de la requête qu'on cherche à faire dans la database des exoplanètes
             Paramètres intéressants:
@@ -82,7 +96,11 @@ class FragListePlanetes: Fragment() {
                             - and%20pl_letter%20like%20%27b%27      plusieurs planètes se retrouvent souvent dans le même système, avec un nom et une distance identiques,
                                                                     mais identifiés avec un code de lettres: b pour la plus proche de l'étoile, c, d... On sélectionne seulement la première
                             - &select=pl_hostname,st_dist           les colonnes du tableau que l'on veut obtenir */
-        val url = "https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?&table=exoplanets&format=JSON&where=st_dist%3C10%20and%20pl_letter%20like%20%27b%27&select=pl_hostname,st_dist"
+        //val url = "https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?&table=exoplanets&format=JSON&where=st_dist%3C10%20and%20pl_letter%20like%20%27b%27&select=pl_hostname,st_dist"
+        val urlP1 = "https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?&table=exoplanets&format=JSON&where=st_dist%3C"
+        val urlP2 = distanceScope.toString()
+        val urlP3 = "%20and%20pl_letter%20like%20%27b%27&select=pl_hostname,st_dist"
+        val url = urlP1 + urlP2 + urlP3
         val requete: JsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             Response.Listener { response ->

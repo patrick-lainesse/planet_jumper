@@ -9,17 +9,17 @@ import kotlinx.android.synthetic.main.prototype_layout.*
 
 class PrototypeJeu: AppCompatActivity(), View.OnClickListener {
 
+    private var distanceParcourue: Float? = null
     val KEY_ICI: String = "ici"
-    private lateinit var distanceParcourue: String
+    //private lateinit var distanceParcourue: Float
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.prototype_layout)
 
-        distanceParcourue = intent.extras?.getString(KEY_ICI, "défaut").toString()
-        val dist = intent.extras?.getString(KEY_ICI, "défaut")?.toFloat()
-        val dist2 = dist?.minus(1)
-        Log.d("PlaneteDistance", dist2.toString())
+        distanceParcourue = intent.extras?.getFloat(KEY_ICI, 0F)
+        //val dist = intent.extras?.getString(KEY_ICI, "défaut")?.toFloat()
+        Log.d("PlaneteDistance", distanceParcourue.toString())
 
 
         setListener()
