@@ -69,8 +69,9 @@ class FragListePlanetes: Fragment() {
         listView?.setOnItemClickListener { parent, view, position, id ->
             val choix = adapter.getItem(position)
             //{ici=3.6, planete=YZ Cet, distance=3.6}
-            val posVirgule = choix.toString().indexOf(',')
-            val distanceGaia = choix.toString().substring(5, posVirgule).toFloat()
+            val posEgal = choix.toString().indexOf("ici=")
+            val posAccolade = choix.toString().indexOf('}')
+            val distanceGaia = choix.toString().substring(posEgal+4, posAccolade).toFloat()
             Log.d("LogSetAdapter", distanceGaia.toString())
             val intent = Intent(context, PrototypeJeu::class.java)
             intent.putExtra(KEY_ICI, distanceGaia)
