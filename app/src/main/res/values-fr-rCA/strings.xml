@@ -9,4 +9,6 @@
     <string name="back">Retour</string>
     <string name="cards">Cartes</string>
     <string name="planets">Planètes</string>
+    <string name="prototype_text">C\'est ici que se déroulera le jeu de cartes central au jeu. À implémenter.</string>
+    <string name="proto_win">Cliquer ici pour gagner cette bataille.</string>
 </resources>

@@ -59,10 +59,13 @@ class FragListePlanetes: Fragment() {
     private fun setAdapter() {
         listView?.setOnItemClickListener { parent, view, position, id ->
             val choix = adapter.getItem(position)
-            Log.d("LogSetAdapter", choix.toString())
-            //{ici=3.6, planete=YZ Cet, distance=3.6}       ???? Plus créer une nouvelle classe pour le jeu
-            val intent = Intent(context, ChoixVaisseau::class.java)
-            intent.putExtra(KEY_ICI, choix.toString())
+            //{ici=3.6, planete=YZ Cet, distance=3.6}
+            val posVirgule = choix.toString().indexOf(',')
+            val distance = choix.toString().substring(5, posVirgule)
+            //Log.d("LogSetAdapter", choix.toString())
+            Log.d("LogSetAdapter", distance)
+            val intent = Intent(context, PrototypeJeu::class.java)
+            intent.putExtra(KEY_ICI, distance)
             startActivity(intent)
         }
     }

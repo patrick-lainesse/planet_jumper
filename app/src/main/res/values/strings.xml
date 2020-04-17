@@ -14,4 +14,6 @@
     <string name="back">Back</string>
     <string name="cards">Cards</string>
     <string name="planets">Planets</string>
+    <string name="prototype_text">This is the activity where the card game will take place. To be implemented.</string>
+    <string name="proto_win">Click here to win this battle.</string>
 </resources>
