@@ -1,6 +1,7 @@
 package com.example.planet_jumper
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,10 +22,11 @@ distance au satellite Gaia (situé à mi-distance entre la Terre et le Soleil). 
 trier un arraylist de hashmap */
 class FragListePlanetes: Fragment() {
 
-    var liste: ListView? = null
+    var listView: ListView? = null
+    lateinit var adapter: SimpleAdapter
     lateinit var planete: String
     lateinit var distance: String
-    val KEY_PLANETE: String = "planete_activity"
+    val KEY_PLANETE: String = "planete"
     val KEY_DISTANCE: String = "distance"
     val KEY_ICI: String = "ici"
 
@@ -47,14 +49,26 @@ class FragListePlanetes: Fragment() {
 
         // récupère une référence sur le listeview du fragment et lance la méthode pour le remplir d'informations
         val view: View = inflater.inflate(R.layout.frag_planetes, container, false)
-        liste = view.findViewById<View>(R.id.liste) as ListView
-        lister()
+        listView = view.findViewById<View>(R.id.liste) as ListView
+        listerConnexion()
+        setAdapter()
 
         return view
     }
 
+    private fun setAdapter() {
+        listView?.setOnItemClickListener { parent, view, position, id ->
+            val choix = adapter.getItem(position)
+            Log.d("LogSetAdapter", choix.toString())
+            //{ici=3.6, planete=YZ Cet, distance=3.6}       ???? Plus créer une nouvelle classe pour le jeu
+            val intent = Intent(context, ChoixVaisseau::class.java)
+            intent.putExtra(KEY_ICI, choix.toString())
+            startActivity(intent)
+        }
+    }
+
     // méthode principale
-    fun lister() {
+    fun listerConnexion() {
 
         val tabPlanetes = ArrayList<HashMap<String, String>>()
 
@@ -84,21 +98,24 @@ class FragListePlanetes: Fragment() {
 
                         // ??? décider plus tard si le map 'ici' est nécessaire ou si le calcul va se faire ailleurs, idem pour l'url et les params
                         map = HashMap()
-                        map["planete_activity"] = planete
-                        map["distance"] = distance
-                        map["ici"] = distance
+                        map[KEY_PLANETE] = planete
+                        map[KEY_DISTANCE] = distance
+                        map[KEY_ICI] = distance
                         tabPlanetes.add(map)
                     }
 
                     // trier le ArrayList en fonction de la distance à la position du joueur dans l'Univers
-                    tabPlanetes.sortWith(Comparator { m1: HashMap<String, String>, m2: HashMap<String, String> -> m1["ici"]!!.compareTo(
-                        m2.get("ici").toString()
+                    tabPlanetes.sortWith(Comparator { m1: HashMap<String, String>, m2: HashMap<String, String> -> m1[KEY_ICI]!!.compareTo(
+                        m2.get(KEY_ICI).toString()
                     ) })
 
                     val tabPlanetesReduit = tabPlanetes.take(10)
 
-                    val monAdapter = SimpleAdapter(context, tabPlanetesReduit, R.layout.rangee_planete, arrayOf("planete_activity", "distance", "ici"), intArrayOf(R.id.card_nom_planete, R.id.card_distance_gaia, R.id.card_distance_ici))
-                    liste!!.adapter = monAdapter
+                    adapter = SimpleAdapter(context, tabPlanetesReduit,
+                                    R.layout.rangee_planete, arrayOf(KEY_PLANETE, KEY_DISTANCE, KEY_ICI),
+                                    intArrayOf(R.id.card_nom_planete, R.id.card_distance_gaia, R.id.card_distance_ici))
+
+                    listView!!.adapter = adapter
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
