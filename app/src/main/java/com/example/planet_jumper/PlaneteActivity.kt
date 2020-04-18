@@ -1,6 +1,7 @@
 package com.example.planet_jumper
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -18,6 +19,7 @@ class Planete: AppCompatActivity(), View.OnClickListener {
         // récupère le choix de vaisseau qui a été fait afin de sélectionner la liste de cartes associées à ce vaisseau en particulier
         vaisseau = intent.extras!!.getString("choix").toString()
         distanceParcourue = intent.extras!!.getFloat(KEY_ICI)
+        Log.d("logActivity", distanceParcourue.toString())
         setListener()
     }
 
@@ -72,9 +74,8 @@ class Planete: AppCompatActivity(), View.OnClickListener {
                         .show(supportFragmentManager.findFragmentByTag(PLANETES_FRAG_TAG)!!)
                         .commit()
                 } else {
-                    // s'il n'existe pas, le créer
-
-                    val fragPlanetes: FragListePlanetes = FragListePlanetes.newInstance()
+                    // s'il n'existe pas, le créer et ajouter la distance parcourue jusqu'à date
+                    val fragPlanetes: FragListePlanetes = FragListePlanetes.newInstance(distanceParcourue)
 
                     supportFragmentManager
                         .beginTransaction()

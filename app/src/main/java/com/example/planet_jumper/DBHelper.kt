@@ -141,6 +141,7 @@ class DBHelper(contexte: Context): SQLiteOpenHelper(contexte, DATABASE_NAME, nul
         }
 
         cursor.close()
+        db.close()
         return tableVaisseaux[0]
     }
 
