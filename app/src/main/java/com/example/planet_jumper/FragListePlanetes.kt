@@ -72,6 +72,8 @@ class FragListePlanetes: Fragment() {
             // récupère le choix effectué dans le ListView et parse son résultat pour obtenir le float nécessaire au calcul
             val choix = adapter.getItem(position)
             // exemple d'un choix.toString: {planete=YZ Cet, distance=3.6. ici=3.6}
+            // pour éviter le bogue sur Linux/MotoG3, il faut plutôt utiliser la ligne suivante:
+            //val posAccolade = choix.toString().indexOf(',')
             val posEgal = choix.toString().indexOf("ici=")
             val posAccolade = choix.toString().indexOf('}')
             val distanceGaia = choix.toString().substring(posEgal+4, posAccolade).toFloat() + distanceCumul
